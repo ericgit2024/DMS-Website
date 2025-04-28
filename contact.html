@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/ai-assistant.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Reach out for more information or assistance</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="disaster-contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="topic">Topic</label>
+                            <select id="topic" name="topic">
+                                <option value="information">General Information</option>
+                                <option value="emergency">Emergency Assistance</option>
+                                <option value="volunteer">Volunteer Opportunities</option>
+                                <option value="feedback">Website Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Emergency Hotline</h3>
+                            <p>1-800-DISASTER</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>help@disasterguard.org</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <h3>Need Help?</h3>
+                            <p>Try our AI Assistant for instant answers to common questions</p>
+                            <button id="open-assistant-btn" class="btn secondary">Chat with AI Assistant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+            <div class="contact-map">
+                <div class="section-header">
+                    <h2>Find Us</h2>
+                    <p>Visit our headquarters</p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2174021099044!2d-73.98722882426352!3d40.75790497138383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1655751234567!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>DisasterGuard</h2>
+                <p>A comprehensive disaster management platform providing real-time alerts, resources, and AI-powered assistance to communities.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="disasters.html">Disasters</a></li>
+                    <li><a href="alerts.html">Alerts</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section subscribe">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest alerts and safety information.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- AI Assistant Side Panel -->
+    <div class="ai-assistant-button" id="ai-assistant-button">
+        <i class="fas fa-robot"></i>
+    </div>
+    
+    <div class="ai-assistant-panel" id="ai-assistant-panel">
+        <div class="assistant-header">
+            <h3>AI Disaster Assistant</h3>
+            <button class="close-assistant" id="close-assistant"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message ai">
+                <div class="message-content">
+                    <p>Hello! I'm your DisasterGuard AI Assistant. How can I help you prepare for or respond to disasters today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Ask about disaster preparedness, safety tips, etc.">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="suggested-questions">
+            <span class="question-chip" data-question="What is the best way to report an emergency?">Report emergency</span>
+            <span class="question-chip" data-question="How quickly will I receive a response to my inquiry?">Response time</span>
+            <span class="question-chip" data-question="Can I volunteer for disaster response?">Volunteer</span>
+            <span class="question-chip" data-question="How can I get disaster alerts for my area?">Get alerts</span>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 
