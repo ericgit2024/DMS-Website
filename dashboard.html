@@ -6,164 +6,41 @@
     <title>Volunteer Dashboard - DisasterGuard</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/chat-bot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .dashboard-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .dashboard-title {
-            color: var(--primary-color);
-        }
-        
-        .dashboard-welcome {
-            margin-bottom: 10px;
-        }
-        
-        .dashboard-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .dashboard-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
-        
-        .dashboard-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
+        /* AI Assistant Button Styles */
+        .ai-assistant-button {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #1a73e8;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-        }
-        
-        .dashboard-card h3 i {
-            margin-right: 10px;
-        }
-        
-        .profile-details {
-            list-style-type: none;
-        }
-        
-        .profile-details li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .profile-details li:last-child {
-            border-bottom: none;
-        }
-        
-        .profile-details i {
-            width: 25px;
-            color: var(--primary-color);
-            margin-right: 10px;
-        }
-        
-        .profile-details strong {
-            min-width: 120px;
-            display: inline-block;
-        }
-        
-        .skill-badge {
-            display: inline-block;
-            background-color: var(--primary-color);
+            justify-content: center;
             color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            margin: 5px;
-            font-size: 14px;
-        }
-        
-        .alert-list {
-            list-style-type: none;
-        }
-        
-        .alert-item {
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border-left: 4px solid var(--primary-color);
-            background-color: #f8f9fa;
-        }
-        
-        .alert-item h4 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .alert-info {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .alert-actions {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-        }
-        
-        .alert-actions .btn {
-            margin-left: 10px;
-            padding: 8px 15px;
-            font-size: 14px;
-        }
-        
-        .emergency-button {
-            display: block;
-            background-color: #ea4335;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            border-radius: 8px;
-            margin-top: 30px;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(234, 67, 53, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 999;
             transition: all 0.3s ease;
         }
-        
-        .emergency-button:hover {
-            background-color: #d33426;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(234, 67, 53, 0.3);
+
+        .ai-assistant-button:hover {
+            transform: scale(1.1);
+            background-color: #1565c0;
         }
-        
-        .empty-state {
-            text-align: center;
-            padding: 30px;
-            color: #666;
+
+        .ai-assistant-button i {
+            font-size: 24px;
         }
-        
-        .empty-state i {
-            font-size: 48px;
-            color: #ddd;
-            margin-bottom: 15px;
+
+        /* Hidden by default, shown when clicked */
+        .ai-assistant-panel {
+            display: none;
         }
     </style>
 </head>
@@ -256,6 +133,33 @@
         </div>
     </main>
 
+    <!-- AI Assistant Button -->
+    <div class="ai-assistant-button" id="ai-assistant-toggle">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- AI Assistant Panel -->
+    <div class="ai-assistant-panel">
+        <div class="ai-header">
+            <h3><i class="fas fa-robot"></i> AI Disaster Assistant</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="chat-area" id="chat-messages">
+            <div class="message ai">
+                <div class="message-content">
+                    <p>Hello! I'm your DisasterGuard AI Assistant. How can I help you prepare for or respond to disasters today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="question-buttons" id="question-buttons">
+            <!-- Question buttons will be populated by JavaScript -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your question...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i> Send</button>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section about">
@@ -288,6 +192,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/chat-bot.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Check if user is logged in, if not redirect to login
@@ -375,50 +280,32 @@
                 // Create a simple popup form for editing profile
                 const profileEditPopup = document.createElement('div');
                 profileEditPopup.className = 'popup-overlay';
-                profileEditPopup.style.position = 'fixed';
-                profileEditPopup.style.top = '0';
-                profileEditPopup.style.left = '0';
-                profileEditPopup.style.width = '100%';
-                profileEditPopup.style.height = '100%';
-                profileEditPopup.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                profileEditPopup.style.display = 'flex';
-                profileEditPopup.style.justifyContent = 'center';
-                profileEditPopup.style.alignItems = 'center';
-                profileEditPopup.style.zIndex = '1000';
                 
                 const popupContent = document.createElement('div');
                 popupContent.className = 'popup-content';
-                popupContent.style.backgroundColor = 'white';
-                popupContent.style.padding = '30px';
-                popupContent.style.borderRadius = '8px';
-                popupContent.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
-                popupContent.style.width = '90%';
-                popupContent.style.maxWidth = '500px';
-                popupContent.style.maxHeight = '80vh';
-                popupContent.style.overflowY = 'auto';
                 
                 // Form content
                 popupContent.innerHTML = `
-                    <h3 style="margin-bottom: 20px; color: var(--primary-color);">Edit Profile</h3>
+                    <h3>Edit Profile</h3>
                     <form id="edit-profile-form">
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <label for="edit-name" style="display: block; margin-bottom: 5px;">Name</label>
-                            <input type="text" id="edit-name" value="${userData.name}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group">
+                            <label for="edit-name">Name</label>
+                            <input type="text" id="edit-name" value="${userData.name}">
                         </div>
                         
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <label for="edit-email" style="display: block; margin-bottom: 5px;">Email</label>
-                            <input type="email" id="edit-email" value="${userData.email}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group">
+                            <label for="edit-email">Email</label>
+                            <input type="email" id="edit-email" value="${userData.email}">
                         </div>
                         
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <label for="edit-location" style="display: block; margin-bottom: 5px;">Location</label>
-                            <input type="text" id="edit-location" value="${userData.location || ''}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group">
+                            <label for="edit-location">Location</label>
+                            <input type="text" id="edit-location" value="${userData.location || ''}">
                         </div>
                         
-                        <div class="form-actions" style="display: flex; justify-content: flex-end; margin-top: 20px;">
-                            <button type="button" id="cancel-edit" class="btn secondary" style="margin-right: 10px; padding: 8px 15px; background-color: #f1f1f1; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
-                            <button type="submit" class="btn primary" style="padding: 8px 15px; background-color: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">Save Changes</button>
+                        <div class="form-actions">
+                            <button type="button" id="cancel-edit" class="btn secondary">Cancel</button>
+                            <button type="submit" class="btn primary">Save Changes</button>
                         </div>
                     </form>
                 `;
@@ -461,6 +348,20 @@
             document.getElementById('logout-btn').addEventListener('click', function() {
                 localStorage.removeItem('disasterguard_user');
                 window.location.href = 'index.html';
+            });
+
+            // AI Assistant Toggle
+            const toggleButton = document.getElementById('ai-assistant-toggle');
+            const assistantPanel = document.querySelector('.ai-assistant-panel');
+            
+            toggleButton.addEventListener('click', function() {
+                assistantPanel.style.display = assistantPanel.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Close button in the panel
+            const closeButton = document.querySelector('.close-btn');
+            closeButton.addEventListener('click', function() {
+                assistantPanel.style.display = 'none';
             });
         });
     </script>

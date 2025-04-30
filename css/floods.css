@@ -1,3 +1,130 @@
+/* Floods Page Styles */
+.content {
+    max-width: 1000px;
+    margin: 80px auto 40px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+    color: black;
+}
+
+p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: black;
+}
+
+ul {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.section {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.page-title {
+    background: linear-gradient(135deg, #1A5276 0%, #2980B9 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.page-title h1 {
+    margin: 0;
+    font-size: 2.8em;
+}
+
+.page-title p {
+    margin-top: 15px;
+    font-size: 1.3em;
+}
+
+.flood-types {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.flood-types th, .flood-types td {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    text-align: left;
+}
+
+.flood-types th {
+    background-color: #1A5276;
+    color: white;
+    font-weight: 500;
+}
+
+.flood-types tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.flood-types tr:hover {
+    background-color: #f1f1f1;
+}
+
+.image-container {
+    margin: 25px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.info-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.warning-box {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px 0;
+    color: #856404;
+}
+
+.warning-box h3 {
+    color: #856404;
+    margin-bottom: 15px;
+}
+
+.emergency-contacts {
+    background-color: #e2e3e5;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px 0;
+}
+
+.emergency-contacts h3 {
+    color: #383d41;
+    margin-bottom: 15px;
+}
+
 /* Floods Page Specific Styles */
 .flood-header {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1547683905-f686c993aae5');
@@ -61,18 +188,6 @@
 .flood-tips li {
     margin-bottom: 10px;
     color: #202124;
-}
-
-.emergency-contacts {
-    background-color: #ea4335;
-    color: white;
-    padding: 30px;
-    border-radius: 10px;
-    margin: 40px 0;
-}
-
-.emergency-contacts h3 {
-    margin-bottom: 20px;
 }
 
 .contact-grid {

@@ -6,7 +6,7 @@
     <title>Contact Us - DisasterGuard</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
-    <link rel="stylesheet" href="css/ai-assistant.css">
+    <link rel="stylesheet" href="css/chat-bot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -65,31 +65,8 @@
                         <button type="submit" class="btn primary">Send Message</button>
                     </form>
                 </div>
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Emergency Hotline</h3>
-                            <p>1-800-DISASTER</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <p>help@disasterguard.org</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-robot"></i>
-                        <div>
-                            <h3>Need Help?</h3>
-                            <p>Try our AI Assistant for instant answers to common questions</p>
-                            <button id="open-assistant-btn" class="btn secondary">Chat with AI Assistant</button>
-                        </div>
-                    </div>
-                </div>
+                
+                
             </div>
             
             
@@ -127,37 +104,19 @@
         </div>
     </footer>
 
-    <!-- AI Assistant Side Panel -->
-    <div class="ai-assistant-button" id="ai-assistant-button">
-        <i class="fas fa-robot"></i>
-    </div>
-    
-    <div class="ai-assistant-panel" id="ai-assistant-panel">
-        <div class="assistant-header">
-            <h3>AI Disaster Assistant</h3>
-            <button class="close-assistant" id="close-assistant"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="chat-messages" id="chat-messages">
-            <div class="message ai">
-                <div class="message-content">
-                    <p>Hello! I'm your DisasterGuard AI Assistant. How can I help you prepare for or respond to disasters today?</p>
-                </div>
-            </div>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Ask about disaster preparedness, safety tips, etc.">
-            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-        </div>
-        <div class="suggested-questions">
-            <span class="question-chip" data-question="What is the best way to report an emergency?">Report emergency</span>
-            <span class="question-chip" data-question="How quickly will I receive a response to my inquiry?">Response time</span>
-            <span class="question-chip" data-question="Can I volunteer for disaster response?">Volunteer</span>
-            <span class="question-chip" data-question="How can I get disaster alerts for my area?">Get alerts</span>
-        </div>
-    </div>
-
     <script src="js/main.js"></script>
-    <script src="js/ai-assistant.js"></script>
+    <script src="js/chat-bot.js"></script>
     <script src="js/auth.js"></script>
+    
+    <script>
+        // Connect the "Chat with AI Assistant" button to the chatbot
+        document.getElementById('open-assistant-btn').addEventListener('click', function() {
+            // Find and click the bot icon to toggle the chat panel
+            const botIcon = document.querySelector('.bot-icon');
+            if (botIcon) {
+                botIcon.click();
+            }
+        });
+    </script>
 </body>
 </html> 

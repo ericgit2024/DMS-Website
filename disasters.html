@@ -5,114 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disaster Types - DisasterGuard</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/disasters.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/chat-bot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .disaster-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px auto;
-            max-width: 1200px;
-            padding: 0 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-        .card-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 12px 12px 0 0;
-        }
-        .card-content {
-            padding: 25px;
-        }
-        .card h3 {
-            margin: 0 0 15px 0;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-        }
-        .card p {
-            margin: 0 0 20px 0;
-            color: #666;
-            line-height: 1.6;
-        }
-        .card-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.3s ease;
-            font-weight: 500;
-        }
-        .card-link:hover {
-            background: #005f73;
-        }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .footer-section {
-            padding: 0;
-        }
-        .footer-section.about {
-            max-width: 400px;
-        }
-        .footer-section.links ul {
-            padding: 0;
-            list-style: none;
-        }
-        .footer-section.links ul li {
-            margin-bottom: 12px;
-        }
-        .footer-section.links ul li a {
-            color: #fff;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-        .footer-section.links ul li a:hover {
-            opacity: 0.8;
-        }
-        .footer-section.subscribe form {
-            margin-top: 15px;
-        }
-        .footer-section.subscribe input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            color: white;
-        }
-        .footer-section.subscribe button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            background: var(--primary-color);
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .footer-section.subscribe button:hover {
-            background: #005f73;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -211,5 +107,6 @@
 
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/chat-bot.js"></script>
 </body>
 </html> 

@@ -144,6 +144,71 @@
     color: #34a853;
 }
 
+/* Added from inline styles */
+.disaster-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card h3 {
+    margin: 0 0 15px 0;
+    color: #1a73e8;
+    font-size: 1.5rem;
+}
+
+.card p {
+    margin: 0 0 20px 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.card-link {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #1a73e8;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    font-weight: 500;
+}
+
+.card-link:hover {
+    background: #1557b0;
+}
+
+.section-about {
+    margin-top: 40px;
+    text-align: center;
+}
+
 .map-section {
     margin-top: 60px;
 }
@@ -198,19 +263,18 @@
 
 .legend-text {
     font-size: 0.875rem;
-    color: #202124;
 }
 
 @media (max-width: 768px) {
     .disasters-header h2 {
         font-size: 2rem;
     }
-    
+
     .disaster-types {
         grid-template-columns: 1fr;
     }
-    
+
     .map-container {
-        height: 300px;
+        height: 350px;
     }
 } 

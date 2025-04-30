@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DisasterGuard - Disaster Management System</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/auth.css">
-    <link rel="stylesheet" href="css/ai-assistant.css">
+    <link rel="stylesheet" href="css/chat-bot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -35,12 +36,14 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <div class="hero-content">
-                <h1>Your Safety is Our Priority</h1>
-                <p>A comprehensive disaster management platform for Kerala providing real-time alerts, resources, and AI-powered assistance to keep communities safe and prepared.</p>
-                <div class="hero-buttons">
-                    <a href="alerts.html" class="btn primary">View Alerts</a>
-                    <a href="register.html" class="btn secondary">Join Us</a>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Your Safety is Our Priority</h1>
+                    <p>A comprehensive disaster management platform for Kerala providing real-time alerts, resources, and AI-powered assistance to keep communities safe and prepared.</p>
+                    <div class="hero-buttons">
+                        <a href="alerts.html" class="btn primary">View Alerts</a>
+                        <a href="register.html" class="btn secondary">Join Us</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -70,7 +73,7 @@
                 <div class="feature-item" style="flex: 1; min-width: 250px;">
                     <i class="fas fa-hands-helping"></i>
                     <h3>Volunteer Network</h3>
-                    <p>Join our community of disaster response volunteers.</p>
+                    <p>Join our community and make a network of disaster response volunteers.</p>
                     <a href="register.html" class="btn primary">Join Now</a>
                 </div>
             </div>
@@ -93,32 +96,6 @@
         </section>
     </main>
 
-    <!-- AI Assistant Panel -->
-    <div class="ai-assistant-panel" id="ai-assistant-panel">
-        <div class="ai-header">
-            <h3>AI Disaster Assistant</h3>
-            <button class="close-btn" id="close-assistant">&times;</button>
-        </div>
-        <div class="chat-area" id="chat-messages">
-            <div class="message ai">
-                <div class="message-content">
-                    <p>Hello! I'm your DisasterGuard AI Assistant. How can I help you prepare for or respond to disasters today?</p>
-                </div>
-            </div>
-        </div>
-        <div class="question-buttons" id="question-buttons">
-            <!-- Question buttons will be populated by JavaScript -->
-        </div>
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Type your question...">
-            <button id="send-btn">Send</button>
-        </div>
-    </div>
-
-    <button id="ai-assistant-button" class="ai-assistant-fab">
-        <i class="fas fa-robot"></i>
-    </button>
-
     <footer>
         <div class="footer-content">
             <div class="footer-section about">
@@ -138,13 +115,14 @@
             </div>
             
         </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2025 DisasterGuard | All Rights Reserved</p>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/ai-assistant.js"></script>
+    <script src="js/chat-bot.js"></script>
     <script src="js/disaster-alerts.js"></script>
     <script src="js/auth.js"></script>
 </body>
