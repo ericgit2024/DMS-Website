@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .register-options {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .register-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .register-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .register-card i {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .register-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .register-card p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+        
+        .register-card .btn {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="register.html" class="active">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>Join DisasterGuard</h2>
+                    <p>Choose how you want to contribute to disaster preparedness and response</p>
+                </div>
+                
+                <div class="register-options">
+                    <div class="register-card">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Volunteer Registration</h3>
+                        <p>Join our network of disaster response volunteers. Help communities prepare for, respond to, and recover from disasters.</p>
+                        <a href="signup.html" class="btn primary">Register as Volunteer</a>
+                    </div>
+                    
+                    <div class="register-card">
+                        <i class="fas fa-user-shield"></i>
+                        <h3>Admin Registration</h3>
+                        <p>Register as an official administrator to manage disaster alerts, coordinate resources, and oversee emergency response.</p>
+                        <a href="admin-signup.html" class="btn secondary">Register as Admin</a>
+                    </div>
+                </div>
+                
+                <div class="auth-redirect">
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 

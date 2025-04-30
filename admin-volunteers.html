@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Volunteers - DisasterGuard Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body class="admin-volunteers">
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard Admin</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="admin-alerts.html">Manage Alerts</a></li>
+                <li><a href="admin-volunteers.html" class="active">Volunteers</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="index.html">Main Site</a></li>
+                <li><a href="#" id="admin-logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="volunteers-container">
+            <div class="volunteers-header">
+                <h2>Manage Volunteers</h2>
+                <div class="volunteer-actions">
+                    <button id="export-volunteers" class="btn secondary">
+                        <span class="material-icons">download</span> Export Data
+                    </button>
+                    <div class="search-box">
+                        <input type="text" id="volunteer-search" placeholder="Search volunteers...">
+                        <span class="material-icons">search</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteer Filters -->
+            <div class="volunteer-filters">
+                <div class="filter-group">
+                    <label for="location-filter">Location</label>
+                    <select id="location-filter">
+                        <option value="">All Locations</option>
+                        <option value="alappuzha">Alappuzha</option>
+                        <option value="ernakulam">Ernakulam</option>
+                        <option value="idukki">Idukki</option>
+                        <option value="kannur">Kannur</option>
+                        <option value="kasaragod">Kasaragod</option>
+                        <option value="kollam">Kollam</option>
+                        <option value="kottayam">Kottayam</option>
+                        <option value="kozhikode">Kozhikode</option>
+                        <option value="malappuram">Malappuram</option>
+                        <option value="palakkad">Palakkad</option>
+                        <option value="pathanamthitta">Pathanamthitta</option>
+                        <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                        <option value="thrissur">Thrissur</option>
+                        <option value="wayanad">Wayanad</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="skills-filter">Skills</label>
+                    <select id="skills-filter">
+                        <option value="">All Skills</option>
+                        <option value="medical">Medical / First Aid</option>
+                        <option value="search_rescue">Search & Rescue</option>
+                        <option value="logistics">Logistics & Transportation</option>
+                        <option value="communications">Communications</option>
+                        <option value="counseling">Counseling / Mental Health</option>
+                        <option value="languages">Language Translation</option>
+                        <option value="technical">Technical / IT Support</option>
+                        <option value="construction">Construction / Engineering</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="availability-filter">Availability</label>
+                    <select id="availability-filter">
+                        <option value="">All</option>
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                    </select>
+                </div>
+                <button id="apply-filters" class="btn primary">Apply Filters</button>
+            </div>
+
+            <!-- Volunteer List -->
+            <div class="volunteer-list">
+                <h3>Registered Volunteers</h3>
+                <div class="volunteer-table-container">
+                    <table class="volunteer-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Skills</th>
+                                <th>Availability</th>
+                                <th>Contact</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="volunteer-table-body">
+                            <!-- Volunteers will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Volunteer Details Modal -->
+            <div id="volunteer-details-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Volunteer Details</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="volunteer-info">
+                            <div class="info-group">
+                                <label>Full Name</label>
+                                <p id="volunteer-name"></p>
+                            </div>
+                            <div class="info-group">
+                                <label>Email</label>
+                                <p id="volunteer-email"></p>
+                            </div>
+                            <div class="info-group">
+                                <label>Phone</label>
+                                <p id="volunteer-phone"></p>
+                            </div>
+                            <div class="info-group">
+                                <label>Location</label>
+                                <p id="volunteer-location"></p>
+                            </div>
+                            <div class="info-group">
+                                <label>Skills</label>
+                                <p id="volunteer-skills"></p>
+                            </div>
+                            <div class="info-group">
+                                <label>Availability</label>
+                                <p id="volunteer-availability"></p>
+                            </div>
+                            <div class="info-group">
+                                <label>Emergency Contact</label>
+                                <p id="volunteer-emergency-contact"></p>
+                            </div>
+                        </div>
+                        <div class="volunteer-history">
+                            <h4>Deployment History</h4>
+                            <div id="deployment-history">
+                                <!-- Deployment history will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn secondary" id="assign-volunteer">Assign to Alert</button>
+                        <button class="btn primary" id="contact-volunteer">Contact Volunteer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DisasterGuard Admin Portal</h3>
+                <p>Manage disaster alerts and coordinate volunteer efforts</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | Admin Portal</p>
+        </div>
+    </footer>
+
+    <script src="js/admin-volunteers.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 

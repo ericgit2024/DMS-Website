@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .donation-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .donation-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .donation-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .donation-header p {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .donation-options {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 40px;
+            max-width: 900px;
+        }
+
+        .donation-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .donation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .donation-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .donation-card h3 .material-icons {
+            color: var(--primary-color);
+        }
+
+        .donation-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .donation-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .donation-info h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .donation-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .donation-info li {
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .donation-info li strong {
+            color: #333;
+            margin-right: 5px;
+        }
+
+        .donate-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .donate-button:hover {
+            background-color: #005f73;
+        }
+
+        .donation-note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 40px;
+        }
+
+        .donation-note h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .donation-note p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .qr-code {
+            max-width: 200px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .verification-badge {
+            display: flex;
+            align-items: center;
+            color: #28a745;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .verification-badge .material-icons {
+            color: #28a745;
+            font-size: 18px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="donate.html" class="active">Donate</a></li>
+                <li><a href="volunteer-dashboard.html">Dashboard</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="donation-container">
+            <div class="donation-header">
+                <h2>Support Kerala Disaster Relief</h2>
+                <p>Your contribution can make a significant difference in helping communities affected by natural disasters in Kerala. Choose from our verified donation channels below.</p>
+            </div>
+
+            <div class="donation-options">
+                <!-- CM's Relief Fund -->
+                <div class="donation-card">
+                    <h3><span class="material-icons">volunteer_activism</span>Chief Minister's Disaster Relief Fund</h3>
+                    <div class="verification-badge">
+                        <span class="material-icons">verified</span> Official Government Channel
+                    </div>
+                    <p>Direct contribution to Kerala's official disaster relief fund. Your donation will be used for immediate relief and rehabilitation efforts.</p>
+                    <div class="donation-info">
+                        <h4>Bank Details</h4>
+                        <ul>
+                            <li><strong>Account Name:</strong> Chief Minister's Disaster Relief Fund</li>
+                            <li><strong>Account Number:</strong> 67319948232</li>
+                            <li><strong>Bank:</strong> State Bank of India</li>
+                            <li><strong>IFSC Code:</strong> SBIN0070028</li>
+                            <li><strong>Branch:</strong> City Branch, Thiruvananthapuram</li>
+                        </ul>
+                    </div>
+                    <a href="https://donation.cmdrf.kerala.gov.in/" target="_blank" class="donate-button">
+                        <span class="material-icons">favorite</span> Donate to CMDRF
+                    </a>
+                </div>
+            </div>
+
+            <div class="donation-note">
+                <h4><span class="material-icons">info</span> Important Note</h4>
+                <p>All donations to the Chief Minister's Disaster Relief Fund (CMDRF) are eligible for 100% tax exemption under Section 80G of the Income Tax Act. Please keep your transaction details for tax purposes. For any queries related to donations, please contact our support team.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DisasterGuard</h3>
+                <p>Supporting Kerala's disaster relief and recovery efforts</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle logout
+            document.getElementById('logout').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('disasterguard_user');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html> 

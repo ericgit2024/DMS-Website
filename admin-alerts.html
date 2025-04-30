@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Alerts - DisasterGuard Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+</head>
+<body class="admin-alerts">
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard Admin</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="admin-alerts.html" class="active">Manage Alerts</a></li>
+                <li><a href="admin-volunteers.html">Volunteers</a></li>
+                <li><a href="index.html">Main Site</a></li>
+                <li><a href="#" id="admin-logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="alerts-container">
+            <div class="alerts-header">
+                <h2>Manage Disaster Alerts</h2>
+                <button id="new-alert-btn" class="btn primary"><i class="fas fa-plus"></i> New Alert</button>
+            </div>
+
+            <!-- New Alert Form -->
+            <div id="new-alert-form" class="alert-form">
+                <h3>Create New Alert</h3>
+                <form id="disaster-alert-form">
+                    <div class="form-group">
+                        <label for="alert-title">Alert Title</label>
+                        <input type="text" id="alert-title" name="title" required placeholder="e.g., Flash Flood Warning">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="alert-type">Alert Type</label>
+                            <div class="input-with-icon">
+                                    <select id="alert-type" name="alert_type" required>
+                                        <option value="" disabled selected>Select alert type</option>
+                                        <option value="flood">Flood</option>
+                                        <option value="hurricane">Hurricane / Cyclone</option>
+                                        <option value="landslide">Landslide</option>
+                                        <option value="other">Other Emergency</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="severity-level">Severity Level</label>
+                            <select id="severity-level" name="severity" required>
+                                <option value="">Select Severity</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alert-description">Description</label>
+                        <textarea id="alert-description" name="description" rows="4" required placeholder="Detailed description of the disaster situation"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start-date">Start Date</label>
+                            <input type="datetime-local" id="start-date" name="startDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="end-date">Expected End Date</label>
+                            <input type="datetime-local" id="end-date" name="endDate">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Affected Area</label>
+                        <div id="alert-map" class="alert-map"></div>
+                        <input type="hidden" id="area-coordinates" name="coordinates">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="affected-region">Region</label>
+                            <input type="text" id="affected-region" name="region" required placeholder="e.g., Downtown Area">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="population-affected">Estimated Population Affected</label>
+                            <input type="number" id="population-affected" name="populationAffected" placeholder="e.g., 5000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evacuation-centers">Evacuation Centers</label>
+                        <textarea id="evacuation-centers" name="evacuationCenters" rows="3" placeholder="List evacuation center locations"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergency-contacts">Emergency Contacts</label>
+                        <textarea id="emergency-contacts" name="emergencyContacts" rows="3" placeholder="List emergency contact numbers"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resources-needed">Resources Needed</label>
+                        <textarea id="resources-needed" name="resourcesNeeded" rows="3" placeholder="List required resources and supplies"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Post Alert</button>
+                        <button type="button" class="btn secondary" id="cancel-alert">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Existing Alerts Table -->
+            <div class="existing-alerts">
+                <h3>Active Alerts</h3>
+                <div class="alerts-table-container">
+                    <table class="alerts-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Type</th>
+                                <th>Severity</th>
+                                <th>Region</th>
+                                <th>Start Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alerts-table-body">
+                            <!-- Alerts will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DisasterGuard Admin Portal</h3>
+                <p>Manage disaster alerts and coordinate volunteer efforts</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DisasterGuard | Admin Portal</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="js/admin-alerts.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 

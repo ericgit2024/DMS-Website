@@ -1,0 +1,108 @@
+/* Landslides Page Specific Styles */
+.landslide-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1599640842225-85d111c60e6b');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.landslide-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.landslide-warning {
+    background-color: #795548;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.risk-factors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.risk-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #795548;
+}
+
+.risk-card h3 {
+    color: #795548;
+    margin-bottom: 15px;
+}
+
+.prevention-tips {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.prevention-tips h3 {
+    color: #795548;
+    margin-bottom: 20px;
+}
+
+.prevention-tips ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.prevention-tips li {
+    margin-bottom: 10px;
+    color: #202124;
+}
+
+.emergency-info {
+    background-color: #ea4335;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.emergency-info h3 {
+    margin-bottom: 20px;
+}
+
+.emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.emergency-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .landslide-header {
+        height: 300px;
+    }
+    
+    .landslide-content {
+        margin: 20px auto;
+    }
+    
+    .risk-card {
+        padding: 15px;
+    }
+} 

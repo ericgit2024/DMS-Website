@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclone Information - DisasterGuard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .content {
+            max-width: 1000px;
+            margin: 80px auto 40px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h1, h2, h3 {
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.8;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #0d6efd;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+        }
+
+        .info-box {
+            background-color: #cfe2ff;
+            border: 1px solid #b6d4fe;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            color: #0d6efd;
+        }
+
+        .image-container {
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            color: #856404;
+        }
+
+        .warning-box h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .emergency-contacts {
+            background-color: #e2e3e5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .emergency-contacts h3 {
+            color: #383d41;
+            margin-bottom: 15px;
+        }
+
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .type-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .type-card h3 {
+            color: #0d6efd;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .type-card p {
+            margin: 0;
+            color: #666;
+        }
+
+        .severity-scale {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .severity-level {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+
+        .severity-level.low {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+        }
+
+        .severity-level.moderate {
+            background: linear-gradient(135deg, #ffc107 0%, #d39e00 100%);
+        }
+
+        .severity-level.high {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        .severity-level h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        .severity-level p {
+            margin: 0;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #0d6efd;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #0d6efd;
+        }
+
+        .nav-links a.active {
+            color: #0d6efd;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-section h2, .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .footer-section.links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section.links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section.links a:hover {
+            color: white;
+        }
+
+        .footer-section.subscribe input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: white;
+        }
+
+        .footer-section.subscribe button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background: #0d6efd;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .footer-section.subscribe button:hover {
+            background: #0b5ed7;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            color: #ccc;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease;
+            background-color: #0d6efd;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: block;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="page-title">
+        <h1 style="margin: 0; font-size: 2.8em;">Cyclone Information</h1>
+        <p style="margin-top: 15px; font-size: 1.3em;">Understanding and Preparing for Cyclones</p>
+    </div>
+    
+    <div class="content">
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1670954208723-d297a0d9ffc3?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cyclone Impact" class="info-image">
+        </div>
+
+        <section class="section">
+            <h2>What are Cyclones?</h2>
+            <p>Cyclones are large-scale air masses that rotate around a strong center of low atmospheric pressure. They are characterized by inward spiraling winds that rotate counterclockwise in the Northern Hemisphere and clockwise in the Southern Hemisphere.</p>
+        </section>
+        
+        <div class="type-grid">
+            <div class="type-card">
+                <h3>Tropical Cyclones</h3>
+                <p>Form over warm ocean waters, including hurricanes and typhoons.</p>
+            </div>
+            <div class="type-card">
+                <h3>Extratropical Cyclones</h3>
+                <p>Form outside the tropics with frontal boundaries between warm and cold air masses.</p>
+            </div>
+            <div class="type-card">
+                <h3>Subtropical Cyclones</h3>
+                <p>Have characteristics of both tropical and extratropical cyclones.</p>
+            </div>
+            <div class="type-card">
+                <h3>Mesocyclones</h3>
+                <p>Smaller-scale rotation within thunderstorms that can lead to tornadoes.</p>
+            </div>
+        </div>
+
+        <div class="severity-scale">
+            <div class="severity-level low">
+                <h4>Category 1-2</h4>
+                <p>Minimal to Moderate damage. Winds 119-177 km/h</p>
+            </div>
+            <div class="severity-level moderate">
+                <h4>Category 3</h4>
+                <p>Extensive damage. Winds 178-208 km/h</p>
+            </div>
+            <div class="severity-level high">
+                <h4>Category 4-5</h4>
+                <p>Extreme to Catastrophic damage. Winds >209 km/h</p>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1612655455247-a81e2f4a0d99?q=80&w=2080&auto=format&fit=crop" alt="Cyclone Warning Signs" class="info-image">
+        </div>
+        
+        <div class="warning-box">
+            <h3><i class="fas fa-exclamation-triangle"></i> Warning Signs</h3>
+            <ul>
+                <li>Rapidly falling barometric pressure</li>
+                <li>Increasing wind speeds and gusty conditions</li>
+                <li>Large ocean swells and rough seas</li>
+                <li>Dark, threatening clouds</li>
+                <li>Heavy rainfall and thunderstorms</li>
+                <li>Storm surge warnings</li>
+            </ul>
+        </div>
+
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1697741016013-da0280294e65?q=80&w=2126&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cyclone Preparation" class="info-image">
+        </div>
+        
+        <section class="section">
+            <h2>Before a Cyclone</h2>
+            <ul>
+                <li>Create an emergency plan for your family</li>
+                <li>Prepare an emergency kit with food, water, and medical supplies</li>
+                <li>Secure loose items outside your home</li>
+                <li>Trim trees and branches that could fall on your house</li>
+                <li>Know your evacuation routes and local shelters</li>
+                <li>Monitor weather updates and official warnings</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2>During a Cyclone</h2>
+            <ul>
+                <li>Stay indoors and away from windows, skylights, and glass doors</li>
+                <li>Take shelter in the strongest part of your house (typically a small interior room)</li>
+                <li>Keep a battery-powered radio for emergency updates</li>
+                <li>Turn off utilities if instructed to do so</li>
+                <li>Do not go outside during the "eye" of the cyclone - severe winds will return</li>
+                <li>If flooding occurs, move to higher ground</li>
+            </ul>
+        </section>
+
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1709456756467-50bdb20aec1d?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cyclone Recovery" class="info-image">
+        </div>
+        
+        <section class="section">
+            <h2>After a Cyclone</h2>
+            <ul>
+                <li>Continue listening to emergency information and alerts</li>
+                <li>Check your property for damage and stay out of damaged buildings</li>
+                <li>Avoid wading in floodwater which may contain dangerous debris</li>
+                <li>Be aware of dangerous power lines, broken gas lines, and other hazards</li>
+                <li>Document property damage with photographs for insurance claims</li>
+                <li>Help neighbors who may require special assistance</li>
+            </ul>
+        </section>
+
+        <div class="emergency-contacts">
+            <h3><i class="fas fa-phone"></i> Emergency Contacts</h3>
+            <ul>
+                <li>Emergency Services: 112</li>
+                <li>Kerala State Emergency Operations Centre: 1070</li>
+                <li>District Emergency Operations Centre: 1077</li>
+                <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>DisasterGuard</h2>
+                <p>A comprehensive disaster management platform providing real-time alerts, resources, and AI-powered assistance to communities.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="disasters.html">Disasters</a></li>
+                    <li><a href="alerts.html">Alerts</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section subscribe">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest alerts and safety information.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 

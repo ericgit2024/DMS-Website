@@ -1,0 +1,236 @@
+.donate-section {
+    padding: 80px 20px;
+    background-color: #f8f9fa;
+}
+
+.donate-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.donate-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.donate-header h2 {
+    font-size: 2.5rem;
+    color: #202124;
+    margin-bottom: 15px;
+}
+
+.donate-header p {
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.donation-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.donation-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.donation-card:hover {
+    transform: translateY(-5px);
+}
+
+.donation-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #e8f0fe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.donation-icon i {
+    font-size: 1.5rem;
+    color: #1a73e8;
+}
+
+.donation-card h3 {
+    font-size: 1.3rem;
+    color: #202124;
+    margin-bottom: 15px;
+}
+
+.donation-card p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.donate-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #202124;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1a73e8;
+    outline: none;
+}
+
+.amount-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.amount-option {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.amount-option:hover {
+    border-color: #1a73e8;
+    background-color: #f8f9fa;
+}
+
+.amount-option.selected {
+    border-color: #1a73e8;
+    background-color: #e8f0fe;
+}
+
+.amount-option span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #202124;
+}
+
+.custom-amount {
+    position: relative;
+}
+
+.custom-amount span {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.custom-amount input {
+    padding-left: 30px;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.payment-method {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+    border-color: #1a73e8;
+    background-color: #f8f9fa;
+}
+
+.payment-method.selected {
+    border-color: #1a73e8;
+    background-color: #e8f0fe;
+}
+
+.payment-method img {
+    height: 24px;
+}
+
+.donate-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.donate-button:hover {
+    background-color: #1557b0;
+}
+
+.secure-notice {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.875rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.secure-notice i {
+    color: #34a853;
+}
+
+@media (max-width: 768px) {
+    .donate-form {
+        padding: 30px;
+    }
+    
+    .amount-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+} 

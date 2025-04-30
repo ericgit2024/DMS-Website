@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Information - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>        
+        .content {
+            max-width: 1000px;
+            margin: 80px auto 40px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: black;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: black;
+        }
+        
+        ul {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, #1A5276 0%, #2980B9 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .flood-types {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .flood-types th, .flood-types td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .flood-types th {
+            background-color: #1A5276;
+            color: white;
+            font-weight: 500;
+        }
+
+        .flood-types tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .flood-types tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .image-container {
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            color: #856404;
+        }
+
+        .warning-box h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .emergency-contacts {
+            background-color: #e2e3e5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .emergency-contacts h3 {
+            color: #383d41;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="page-title">
+        <h1 style="margin: 0; font-size: 2.8em;">Flood Information</h1>
+        <p style="margin-top: 15px; font-size: 1.3em;">Understanding, Preparing for, and Responding to Floods</p>
+    </div>
+    
+    <div class="content">
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1485617359743-4dc5d2e53c89?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flood Impact" class="info-image">
+        </div>
+
+        <section class="section">
+            <h2>What are Floods?</h2>
+            <ul>
+                <li>Floods occur when water overflows onto land that is normally dry.</li>
+                <li>They can happen anywhere, with varying durations, depths, and impacts.</li>
+                <li>Flooding is often caused by heavy rainfall, rapid snowmelt, dam failures, or storm surges from hurricanes.</li>
+                <li>Floods are among the most common natural disasters worldwide and can cause extensive damage to property, infrastructure, and human life.</li>
+            </ul>
+        </section>
+        
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1651183096610-fd4fbeae3487?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flood Warning Signs" class="info-image">
+        </div>
+
+        <section class="section">
+            <h2>Types of Floods</h2>
+            <p>Floods can be categorized into several types based on their causes and characteristics:</p>
+            
+            <table class="flood-types">
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Warning Time</th>
+                </tr>
+                <tr>
+                    <td>Flash Floods</td>
+                    <td>Rapid-onset floods that occur with little to no warning, often caused by heavy rainfall or dam failures</td>
+                    <td>Minutes to hours</td>
+                </tr>
+                <tr>
+                    <td>River Floods</td>
+                    <td>Occur when rivers overflow their banks due to excessive rainfall or snowmelt</td>
+                    <td>Hours to days</td>
+                </tr>
+                <tr>
+                    <td>Coastal Floods</td>
+                    <td>Flooding of coastal areas due to high tides, storm surges, or tsunamis</td>
+                    <td>Hours to days</td>
+                </tr>
+                <tr>
+                    <td>Urban Floods</td>
+                    <td>Occur in urban areas when rainfall overwhelms drainage systems</td>
+                    <td>Minutes to hours</td>
+                </tr>
+                <tr>
+                    <td>Pluvial Floods</td>
+                    <td>Surface water flooding caused by heavy rainfall before water reaches natural waterways</td>
+                    <td>Minutes to hours</td>
+                </tr>
+            </table>
+        </section>
+        
+        <div class="warning-box">
+            <h3><i class="fas fa-exclamation-triangle"></i> Warning Signs of Flooding</h3>
+            <ul>
+                <li>Heavy rainfall over an extended period</li>
+                <li>Rapidly rising water levels in rivers, streams, or lakes</li>
+                <li>Unusual water buildup in areas that are typically dry</li>
+                <li>Weather alerts and warnings from local authorities</li>
+                <li>Muddy or debris-filled water in normally clear streams</li>
+                <li>Unusual sounds like rumbling or crashing (which might indicate landslides or debris flows)</li>
+                <li>Water backing up in storm drains or sewers</li>
+            </ul>
+        </div>
+
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1639164631388-857f29935861?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flood Preparation" class="info-image">
+        </div>
+        
+        <section class="section">
+            <h2>Before a Flood</h2>
+            <ul>
+                <li>Know your area's flood risk and history</li>
+                <li>Keep important documents in waterproof containers</li>
+                <li>Create an emergency kit with food, water, medications, and first aid supplies</li>
+                <li>Develop an evacuation plan and know evacuation routes</li>
+                <li>Consider flood insurance if you live in a flood-prone area</li>
+                <li>Install check valves in plumbing to prevent floodwater from backing up into drains</li>
+                <li>Elevate the furnace, water heater, and electric panel if susceptible to flooding</li>
+                <li>Construct barriers (levees, flood walls) to stop floodwater from entering your home</li>
+                <li>Seal basement walls with waterproofing compounds</li>
+                <li>Stay informed through weather reports and emergency alerts</li>
+            </ul>
+        </section>
+        
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1598801128222-35437cb2357f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flood" class="info-image">
+        </div>
+        
+        
+        <section class="section">
+            <h2>During a Flood</h2>
+            <ul>
+                <li>Listen to emergency information and alerts</li>
+                <li>If told to evacuate, do so immediately</li>
+                <li>Disconnect utilities and appliances if safe to do so</li>
+                <li>Do not walk, swim, or drive through flood waters - "Turn Around, Don't Drown!"</li>
+                <li>Stay off bridges over fast-moving water</li>
+                <li>Evacuate to higher ground if trapped by flood waters</li>
+                <li>Move to the highest level of a building if trapped by rising water</li>
+                <li>If your vehicle is trapped in rapidly moving water, stay inside. If water is rising inside the vehicle, seek refuge on the roof</li>
+                <li>Keep children away from flood water, which may be contaminated</li>
+            </ul>
+        </section>
+
+        <div class="image-container">
+            <img src="https://plus.unsplash.com/premium_photo-1742421624501-49ce5da87756?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flood Recovery" class="info-image">
+        </div>
+        
+        <section class="section">
+            <h2>After a Flood</h2>
+            <ul>
+                <li>Return home only when authorities say it is safe</li>
+                <li>Avoid wading in floodwater, which may be contaminated or electrically charged</li>
+                <li>Use caution when entering buildings; there may be hidden damage</li>
+                <li>Clean and disinfect everything that got wet to prevent mold growth</li>
+                <li>Throw away food that may have come in contact with flood or storm water</li>
+                <li>Do not use water that could be contaminated for washing dishes, brushing teeth, or cooking</li>
+                <li>Document property damage with photographs for insurance purposes</li>
+                <li>Be aware of areas where floodwaters have receded and watch for debris</li>
+                <li>Contact your insurance agent to file a claim if you have flood insurance</li>
+                <li>Check on neighbors, especially elderly or vulnerable individuals</li>
+            </ul>
+        </section>
+
+        <div class="emergency-contacts">
+            <h3><i class="fas fa-phone"></i> Emergency Contacts</h3>
+            <ul>
+                <li>Emergency Services: 112</li>
+                <li>Kerala State Emergency Operations Centre: 1070</li>
+                <li>District Emergency Operations Centre: 1077</li>
+                <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>DisasterGuard</h2>
+                <p>A comprehensive disaster management platform providing real-time alerts, resources, and AI-powered assistance to communities.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="disasters.html">Disasters</a></li>
+                    <li><a href="alerts.html">Alerts</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Volunteer</a></li>
+                </ul>
+            </div>
+            
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    
+    
+</body>
+</html> 

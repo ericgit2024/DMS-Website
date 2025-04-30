@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Alerts - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Fix for checkbox alignment */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            min-width: 120px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .checkbox-item label {
+            display: inline;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html" class="active">Alerts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Alerts Section -->
+        <section id="alerts" class="alerts">
+            <div class="section-header">
+                <h2>Active Alerts</h2>
+                <p>Real-time updates on ongoing and potential disasters in your region</p>
+            </div>
+            <div class="alert-container">
+                <div class="alert-filter">
+                    <select id="disaster-filter">
+                        <option value="all">All Disasters</option>
+                        <option value="flood">Floods</option>
+                        <option value="fire">Landlsides</option>
+                        <option value="hurricane">Cyclones</option>
+                    </select>
+                    <button id="filter-btn">Filter</button>
+                </div>
+                <div class="alert-cards" id="alert-list">
+                    <!-- Alert cards will be dynamically added here -->
+                </div>
+            </div>
+            
+            
+            
+            <!-- Alert Subscription -->
+            <div class="alert-subscription">
+                <div class="section-header">
+                    <h2>Get Alerts Notifications</h2>
+                    <p>Subscribe to receive emergency alerts for your area</p>
+                </div>
+                <div class="subscription-form-container">
+                    <form id="alert-subscription-form">
+                        <div class="form-group">
+                            <label for="alert-email">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="alert-email" name="email" placeholder="Your email address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alert-phone">Phone Number (for SMS alerts)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="alert-phone" name="phone" placeholder="Your phone number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alert-location">Your Location</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="alert-location" name="location" placeholder="City, State, or ZIP Code" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Alert Types</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="alert-flood" name="alert-types" value="flood">
+                                    <label for="alert-flood">Floods</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="alert-landslide" name="alert-types" value="landslide">
+                                    <label for="alert-landslide">Landslides</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="alert-cyclone" name="alert-types" value="cyclone">
+                                    <label for="alert-cyclone">Cyclones</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn primary">Subscribe to Alerts</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>DisasterGuard</h2>
+                <p>A comprehensive disaster management platform providing real-time alerts, resources, and AI-powered assistance to communities.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="disasters.html">Disasters</a></li>
+                    <li><a href="alerts.html">Alerts</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Volunteer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section subscribe">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest alerts and safety information.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/disaster-alerts.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 

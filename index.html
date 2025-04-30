@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisasterGuard - Disaster Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/ai-assistant.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="disasters.html">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="donate.html" class="donate-btn">Donate</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Safety is Our Priority</h1>
+                <p>A comprehensive disaster management platform for Kerala providing real-time alerts, resources, and AI-powered assistance to keep communities safe and prepared.</p>
+                <div class="hero-buttons">
+                    <a href="alerts.html" class="btn primary">View Alerts</a>
+                    <a href="register.html" class="btn secondary">Join Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Content Section -->
+        <section class="featured-content">
+            <div class="section-header">
+                <h2>DisasterGuard Platform</h2>
+                <p>Your comprehensive solution for disaster preparedness and response</p>
+            </div>
+            
+            <div class="features-container" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+                <div class="feature-item" style="flex: 1; min-width: 250px;">
+                    <i class="fas fa-bell"></i>
+                    <h3>Real-time Alerts</h3>
+                    <p>Receive timely notifications about potential disasters in your area.</p>
+                    <a href="alerts.html" class="btn secondary">View Alerts</a>
+                </div>
+                
+                <div class="feature-item" style="flex: 1; min-width: 250px;">
+                    <i class="fas fa-book"></i>
+                    <h3>Disaster Education & Preparedness</h3>
+                    <p>Discover disaster types, preparation tips, and key resources.</p>
+                    <a href="disasters.html" class="btn secondary">Learn More</a>
+                </div>
+                
+                <div class="feature-item" style="flex: 1; min-width: 250px;">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Volunteer Network</h3>
+                    <p>Join our community of disaster response volunteers.</p>
+                    <a href="register.html" class="btn primary">Join Now</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recent Alerts Preview -->
+        <section class="recent-alerts">
+            <div class="section-header">
+                <h2>Recent Alerts</h2>
+                <p>Latest notifications about potential disasters</p>
+            </div>
+            
+            <div class="alert-preview-container" id="recent-alerts-preview">
+                <!-- Alert previews will be dynamically added here -->
+            </div>
+            
+            <div class="center-button">
+                <a href="alerts.html" class="btn primary">View All Alerts</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Assistant Panel -->
+    <div class="ai-assistant-panel" id="ai-assistant-panel">
+        <div class="ai-header">
+            <h3>AI Disaster Assistant</h3>
+            <button class="close-btn" id="close-assistant">&times;</button>
+        </div>
+        <div class="chat-area" id="chat-messages">
+            <div class="message ai">
+                <div class="message-content">
+                    <p>Hello! I'm your DisasterGuard AI Assistant. How can I help you prepare for or respond to disasters today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="question-buttons" id="question-buttons">
+            <!-- Question buttons will be populated by JavaScript -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your question...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <button id="ai-assistant-button" class="ai-assistant-fab">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>DisasterGuard</h2>
+                <p>A comprehensive disaster management platform providing real-time alerts, resources, and AI-powered assistance to communities.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="disasters.html">Disasters</a></li>
+                    <li><a href="alerts.html">Alerts</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Volunteer</a></li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script src="js/disaster-alerts.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 

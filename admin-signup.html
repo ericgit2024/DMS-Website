@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#disasters">Disasters</a></li>
+                <li><a href="index.html#alerts">Alerts</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section signup">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>Admin Registration</h2>
+                    <p>Register as a disaster management administrator</p>
+                </div>
+                
+                <div class="auth-form-container">
+                    <div class="auth-notice">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Admin registration requires verification. Your request will be reviewed by our system administrators.</p>
+                    </div>
+                    
+                    <form id="admin-signup" class="auth-form active">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="first-name" name="first_name" placeholder="Your first name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="last-name" name="last_name" placeholder="Your last name" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" name="email" placeholder="Your official email address" required>
+                            </div>
+                            <small class="form-hint">Please use your official government or organizational email</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="password" name="password" placeholder="Create password" required 
+                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}" 
+                                           title="Must contain at least one number, one uppercase letter, one lowercase letter, and be at least 10 characters long">
+                                    <i class="fas fa-eye toggle-password"></i>
+                                </div>
+                                <small class="form-hint">Minimum 10 characters with letters (upper & lowercase) and numbers</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm password" required>
+                                    <i class="fas fa-eye toggle-password"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organization">Organization / Department</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="organization" name="organization" placeholder="Your organization or department" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="employee-id">Employee ID / Badge Number</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-id-badge"></i>
+                                <input type="text" id="employee-id" name="employee_id" placeholder="Your employee ID or badge number" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="job-title">Job Title</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-briefcase"></i>
+                                <input type="text" id="job-title" name="job_title" placeholder="Your position or title" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="jurisdiction">Jurisdiction / Area of Responsibility</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <select id="jurisdiction" name="jurisdiction" required>
+                                    <option value="" disabled selected>Select area of responsibility</option>
+                                    <option value="local">Local (City/Municipality)</option>
+                                    <option value="district">District</option>
+                                    <option value="state">State</option>
+                                    <option value="national">National</option>
+                                    <option value="international">International</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="district">District</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map"></i>
+                                <select id="district" name="district" required>
+                                    <option value="" disabled selected>Select your district</option>
+                                    <option value="alappuzha">Alappuzha</option>
+                                    <option value="ernakulam">Ernakulam</option>
+                                    <option value="idukki">Idukki</option>
+                                    <option value="kannur">Kannur</option>
+                                    <option value="kasaragod">Kasaragod</option>
+                                    <option value="kollam">Kollam</option>
+                                    <option value="kottayam">Kottayam</option>
+                                    <option value="kozhikode">Kozhikode</option>
+                                    <option value="malappuram">Malappuram</option>
+                                    <option value="palakkad">Palakkad</option>
+                                    <option value="pathanamthitta">Pathanamthitta</option>
+                                    <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                                    <option value="thrissur">Thrissur</option>
+                                    <option value="wayanad">Wayanad</option>
+                                </select>
+                            </div>
+                            <small class="form-hint">The district you'll be responsible for managing disaster response</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="verification-document">Verification Document</label>
+                            <div class="file-upload">
+                                <input type="file" id="verification-document" name="verification_document" accept=".pdf,.jpg,.png">
+                                <label for="verification-document" class="file-upload-label">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Upload ID or authorization letter</span>
+                                </label>
+                                <div class="file-name">No file chosen</div>
+                            </div>
+                            <small class="form-hint">Upload a government ID or authorization letter (PDF, JPG, PNG)</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="supervisor-email">Supervisor's Email (For Verification)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-tie"></i>
+                                <input type="email" id="supervisor-email" name="supervisor_email" placeholder="Your supervisor's email address" required>
+                            </div>
+                            <small class="form-hint">We may contact your supervisor to verify your admin status</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reason">Reason for Access</label>
+                            <textarea id="reason" name="reason" rows="3" placeholder="Briefly explain why you need admin access to this system" required></textarea>
+                        </div>
+                        
+                        
+                        
+                        <div class="form-buttons">
+                            <button type="submit" class="btn primary auth-btn">Submit Registration Request</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="auth-redirect">
+                    <p>Want to register as a Volunteer? <a href="signup.html">Volunteer Registration</a></p>
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password visibility toggle
+            const togglePasswordBtns = document.querySelectorAll('.toggle-password');
+            
+            togglePasswordBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const passwordField = this.previousElementSibling;
+                    
+                    if (passwordField.type === 'password') {
+                        passwordField.type = 'text';
+                        this.classList.remove('fa-eye');
+                        this.classList.add('fa-eye-slash');
+                    } else {
+                        passwordField.type = 'password';
+                        this.classList.remove('fa-eye-slash');
+                        this.classList.add('fa-eye');
+                    }
+                });
+            });
+            
+            // Password match validation
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm-password');
+            
+            confirmPassword.addEventListener('input', function() {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity("Passwords don't match!");
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            });
+            
+            // File upload display
+            const fileInput = document.getElementById('verification-document');
+            const fileName = document.querySelector('.file-name');
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    fileName.textContent = this.files[0].name;
+                } else {
+                    fileName.textContent = 'No file chosen';
+                }
+            });
+            
+            // Form submission handling
+            const adminForm = document.getElementById('admin-signup');
+            
+            adminForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = new FormData(this);
+                
+                // Here you would normally send the data to your server
+                console.log('Form submitted!');
+                
+                // For demo purposes, simulate successful registration
+                const userData = {
+                    email: formData.get('email'),
+                    name: formData.get('first_name') + ' ' + formData.get('last_name'),
+                    role: 'admin',
+                    organization: formData.get('organization'),
+                    pending: true,
+                    registered: new Date().toISOString()
+                };
+                
+                // Show success message
+                alert('Thank you for submitting your admin registration request. We will review your information and contact you shortly.');
+                
+                // Since admin accounts need verification, we don't auto-login
+                // Just redirect to the homepage
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html> 

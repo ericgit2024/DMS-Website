@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Types - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .disaster-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+        .card-content {
+            padding: 25px;
+        }
+        .card h3 {
+            margin: 0 0 15px 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        .card p {
+            margin: 0 0 20px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        .card-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+            font-weight: 500;
+        }
+        .card-link:hover {
+            background: #005f73;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-section {
+            padding: 0;
+        }
+        .footer-section.about {
+            max-width: 400px;
+        }
+        .footer-section.links ul {
+            padding: 0;
+            list-style: none;
+        }
+        .footer-section.links ul li {
+            margin-bottom: 12px;
+        }
+        .footer-section.links ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        .footer-section.links ul li a:hover {
+            opacity: 0.8;
+        }
+        .footer-section.subscribe form {
+            margin-top: 15px;
+        }
+        .footer-section.subscribe input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: white;
+        }
+        .footer-section.subscribe button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .footer-section.subscribe button:hover {
+            background: #005f73;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="disasters.html" class="active">Disasters</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Disaster Types Section -->
+        <section id="disasters" class="disasters">
+            <div class="section-header">
+                <h2>Disaster Types in Kerala</h2>
+                <p>Learn about common disasters in Kerala and how to prepare for them</p>
+            </div>
+            <div class="disaster-cards">
+                <div class="card">
+                    <img src="https://plus.unsplash.com/premium_photo-1661962476059-13543ea45d4d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Floods" class="card-image">
+                    <div class="card-content">
+                        <h3>Floods</h3>
+                        <p>Information on flood safety, evacuation plans, and recovery strategies for Kerala's monsoon floods.</p>
+                        <a href="floods.html" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1621315898086-0e940d7a221e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Landslides" class="card-image">
+                    <div class="card-content">
+                        <h3>Landslides</h3>
+                        <p>Prevention tips, warning signs, and safety procedures for landslides in Kerala's hilly regions.</p>
+                        <a href="landslides.html" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1709456756467-50bdb20aec1d?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cyclones" class="card-image">
+                    <div class="card-content">
+                        <h3>Cyclones</h3>
+                        <p>Cyclone preparedness, tracking tools, and emergency response guidelines for Kerala's coastal areas.</p>
+                        <a href="cyclones.html" class="card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-about" style="margin-top: 40px; text-align: center;">
+                <h3>Kerala State Disaster Management Authority</h3>
+                <p>For official information on disaster preparedness, response, and recovery in Kerala, visit:</p>
+                <a href="https://sdma.kerala.gov.in/" target="_blank" class="btn primary" style="margin-top: 15px;">KSDMA Website</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>DisasterGuard</h2>
+                <p>A comprehensive disaster management platform providing real-time alerts, resources, and AI-powered assistance to communities across Kerala.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="disasters.html">Disasters</a></li>
+                    <li><a href="alerts.html">Alerts</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section subscribe">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest alerts and safety information.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 

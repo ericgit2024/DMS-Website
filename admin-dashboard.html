@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - DisasterGuard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+    
+</head>
+<body class="admin-dashboard">
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>DisasterGuard Admin</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="admin-alerts.html">Manage Alerts</a></li>
+                <li><a href="admin-volunteers.html">Volunteers</a></li>
+                <li><a href="index.html">Main Site</a></li>
+                <li><a href="login.html" id="admin-logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <p>Welcome back, <span id="admin-name">Admin</span></p>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <i class="fas fa-bell"></i>
+                    <h3>Active Alerts</h3>
+                    <p id="active-alerts-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Total Volunteers</h3>
+                    <p id="total-volunteers-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Available Volunteers</h3>
+                    <p id="available-volunteers-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Affected Areas</h3>
+                    <p id="affected-areas-count">0</p>
+                </div>
+            </div>
+
+            <div class="dashboard-actions">
+                <a href="admin-alerts.html#new" class="action-card">
+                    <i class="fas fa-plus-circle"></i>
+                    <h3>Post New Alert</h3>
+                    <p>Create a new disaster alert with location and details</p>
+                </a>
+                <a href="admin-volunteers.html" class="action-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Manage Volunteers</h3>
+                    <p>View and coordinate volunteer activities</p>
+                </a>
+                <a href="admin-alerts.html" class="action-card">
+                    <i class="fas fa-edit"></i>
+                    <h3>Edit Alerts</h3>
+                    <p>Modify or update existing alerts</p>
+                </a>
+                
+            </div>
+
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-list" id="recent-activities">
+                    <!-- Activities will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DisasterGuard Admin Portal</h3>
+                <p>Manage disaster alerts and coordinate volunteer efforts</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DisasterGuard | Admin Portal</p>
+        </div>
+    </footer>
+
+    <script src="js/admin-dashboard.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 
