@@ -15,7 +15,7 @@
 }
 
 .dashboard-title {
-    color: #1a73e8;
+    color: #8A2BE2;
 }
 
 .dashboard-welcome {
@@ -43,7 +43,7 @@
 }
 
 .dashboard-card h3 {
-    color: #1a73e8;
+    color: #8A2BE2;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -70,7 +70,7 @@
 
 .profile-details i {
     width: 25px;
-    color: #1a73e8;
+    color: #8A2BE2;
     margin-right: 10px;
 }
 
@@ -81,7 +81,7 @@
 
 .skill-badge {
     display: inline-block;
-    background-color: #1a73e8;
+    background-color: #8A2BE2;
     color: white;
     padding: 5px 10px;
     border-radius: 20px;
@@ -97,8 +97,8 @@
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
-    border-left: 4px solid #1a73e8;
-    background-color: #f8f9fa;
+    border-left: 4px solid #8A2BE2;
+    background-color: #e0f7cc;
 }
 
 .alert-item h4 {
@@ -222,13 +222,13 @@
 }
 
 .form-actions .btn.primary {
-    background-color: #1a73e8;
+    background-color: #8A2BE2;
     color: white;
 }
 
 .dashboard-section {
     padding: 80px 20px;
-    background-color: #f8f9fa;
+    background-color: #e0f7cc;
 }
 
 .dashboard-header h2 {
@@ -266,11 +266,11 @@
 }
 
 .icon-alerts {
-    background-color: #1a73e8;
+    background-color: #8A2BE2;
 }
 
 .icon-tasks {
-    background-color: #34a853;
+    background-color: #A0522D;
 }
 
 .icon-messages {
@@ -379,12 +379,12 @@
 }
 
 .action-button:hover {
-    border-color: #1a73e8;
+    border-color: #8A2BE2;
     background-color: #f8f9fa;
 }
 
 .action-icon {
-    color: #1a73e8;
+    color: #8A2BE2;
 }
 
 .action-text {
