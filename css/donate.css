@@ -126,11 +126,6 @@
     font-size: 14px;
 }
 
-.qr-code {
-    max-width: 200px;
-    margin: 20px auto;
-    display: block;
-}
 
 .verification-badge {
     display: flex;
@@ -262,53 +257,6 @@
     outline: none;
 }
 
-.amount-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.amount-option {
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.amount-option:hover {
-    border-color: #1a73e8;
-    background-color: #f8f9fa;
-}
-
-.amount-option.selected {
-    border-color: #1a73e8;
-    background-color: #e8f0fe;
-}
-
-.amount-option span {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #202124;
-}
-
-.custom-amount {
-    position: relative;
-}
-
-.custom-amount span {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #666;
-}
-
-.custom-amount input {
-    padding-left: 30px;
-}
 
 .payment-methods {
     display: grid;
