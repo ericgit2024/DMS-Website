@@ -11,4 +11,6 @@ main {
 
 footer {
     margin-top: auto;
+    /* Adding specificity to ensure admin footer is the same height as the main footer */
+    padding: 30px 0 10px !important;
 } 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/form-layout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -40,7 +41,9 @@
                 
                 <div class="auth-form-container">
                     <form id="volunteer-signup" class="auth-form active">
-                        <div class="form-row">
+                        <div class="form-section left">
+                            <!-- Personal Information -->
+                            <h3>Personal Information</h3>
                             <div class="form-group">
                                 <label for="first-name">First Name</label>
                                 <div class="input-with-icon">
@@ -195,7 +198,10 @@
                             <small class="form-hint">Tell us about your background in volunteering or disaster response</small>
                         </div>
                         
-                        <div class="form-group">
+                        <!-- Skills and Availability -->
+                        <h3>Skills and Availability</h3>
+                            
+                            <div class="form-group">
                             <label for="availability">Availability</label>
                             <select id="availability" name="availability" required>
                                 <option value="" disabled selected>Select your availability</option>
@@ -301,4 +307,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
