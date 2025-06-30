@@ -1,0 +1,30 @@
+[
+  {
+    "id": "mcgcob2cv6zt9",
+    "type": "rain",
+    "title": "Heavy Rainfall Warning for Idukki District",
+    "description": "The Meteorological Department has issued a heavy rainfall warning for Idukki district. Residents are advised to stay indoors and avoid unnecessary travel.",
+    "location": "Idukki",
+    "date": "2023-07-15",
+    "timestamp": "2025-06-28T14:42:26.436Z"
+  },
+  {
+    "id": "mcgcob2d4x881",
+    "type": "flood",
+    "title": "Flood Alert for Wayanad District",
+    "description": "Due to continuous heavy rainfall, flood alert has been issued for low-lying areas of Wayanad district. Residents are advised to move to higher ground or designated relief camps.",
+    "location": "Wayanad",
+    "date": "2023-07-14",
+    "severity": "severe",
+    "timestamp": "2025-06-28T14:42:26.437Z"
+  },
+  {
+    "id": "mcgcob2ddam84",
+    "type": "rain",
+    "title": "Moderate to Heavy Rainfall Expected in Kozhikode",
+    "description": "Moderate to heavy rainfall is expected in Kozhikode district over the next 48 hours. Residents are advised to take necessary precautions.",
+    "location": "Kozhikode",
+    "date": "2023-07-13",
+    "timestamp": "2025-06-28T14:42:26.437Z"
+  }
+]

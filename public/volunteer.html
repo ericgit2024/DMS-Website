@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Registration - DisasterGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .volunteer-header {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .volunteer-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .volunteer-header p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    
+    .alert-info {
+      margin-bottom: 2rem;
+    }
+    
+    .form-section {
+      padding-bottom: 3rem;
+    }
+    
+    .form-section h2 {
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .volunteer-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .volunteer-type {
+      flex: 1;
+      min-width: 200px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .volunteer-type:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .volunteer-type.selected {
+      border-color: var(--secondary-color);
+      background-color: #e6f7ee;
+    }
+    
+    .volunteer-type h3 {
+      color: var(--dark-color);
+      margin-bottom: 1rem;
+    }
+    
+    .volunteer-type p {
+      color: var(--gray-color);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .volunteer-type ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .volunteer-type ul li {
+      margin-bottom: 0.5rem;
+      color: var(--gray-color);
+    }
+    
+    .success-message {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 2rem;
+      display: none;
+    }
+    
+    .success-message h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .success-message p {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li><a href="/info">Flood Info</a></li>
+          <li><a href="/volunteer" class="active">Volunteer</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Volunteer Header -->
+  <div class="volunteer-header">
+    <div class="container">
+      <h1>Volunteer Registration</h1>
+      <p>Join our team of volunteers to help with flood relief activities in Kerala. Your support can make a significant difference in the lives of those affected by floods.</p>
+    </div>
+  </div>
+
+  <!-- Volunteer Content -->
+  <div class="container">
+    <!-- Alert Info (if coming from an alert) -->
+    <div id="alert-info" class="alert-info">
+      <!-- Alert details will be loaded here if coming from an alert -->
+    </div>
+    
+    <!-- Success Message (hidden by default) -->
+    <div id="success-message" class="success-message">
+      <h3>Thank You for Volunteering!</h3>
+      <p>Your registration has been successfully submitted. We appreciate your willingness to help during this difficult time.</p>
+      <p>Our team will contact you soon with further details about how you can contribute to the relief efforts.</p>
+      <a href="/" class="btn btn-primary">Return to Home</a>
+    </div>
+    
+    <!-- Volunteer Form -->
+    <section class="form-section">
+      <h2>Register as a Volunteer</h2>
+      
+      <!-- Volunteer Types -->
+      <div class="volunteer-types">
+        <div class="volunteer-type" data-type="rescue">
+          <h3>Rescue Operations</h3>
+          <p>Join rescue teams to help evacuate people from flooded areas.</p>
+          <ul>
+            <li>Search and rescue operations</li>
+            <li>Boat operations</li>
+            <li>Emergency evacuations</li>
+          </ul>
+          <p><strong>Requirements:</strong> Physical fitness, swimming ability</p>
+        </div>
+        
+        <div class="volunteer-type" data-type="medical">
+          <h3>Medical Support</h3>
+          <p>Provide medical assistance to those affected by floods.</p>
+          <ul>
+            <li>First aid</li>
+            <li>Medical camps</li>
+            <li>Health check-ups</li>
+          </ul>
+          <p><strong>Requirements:</strong> Medical background preferred</p>
+        </div>
+        
+        <div class="volunteer-type" data-type="relief">
+          <h3>Relief Distribution</h3>
+          <p>Help distribute food, water, and essential supplies.</p>
+          <ul>
+            <li>Packing relief kits</li>
+            <li>Distribution management</li>
+            <li>Inventory tracking</li>
+          </ul>
+          <p><strong>Requirements:</strong> Basic organizational skills</p>
+        </div>
+        
+        <div class="volunteer-type" data-type="shelter">
+          <h3>Shelter Management</h3>
+          <p>Assist in managing relief camps and temporary shelters.</p>
+          <ul>
+            <li>Camp setup and maintenance</li>
+            <li>Registration of displaced people</li>
+            <li>Coordination of services</li>
+          </ul>
+          <p><strong>Requirements:</strong> Good communication skills</p>
+        </div>
+      </div>
+      
+      <!-- Registration Form -->
+      <div class="form-container">
+        <form id="volunteer-form" action="/api/volunteers" method="POST">
+          <!-- Hidden field for alert ID if coming from an alert -->
+          <input type="hidden" id="alert-id" name="alertId" value="">
+          
+          <!-- Hidden field for volunteer type -->
+          <input type="hidden" id="volunteer-type" name="volunteerType" value="">
+          
+          <!-- Personal Information -->
+          <h3>Personal Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name *</label>
+              <input type="text" id="first-name" name="firstName" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name *</label>
+              <input type="text" id="last-name" name="lastName" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age">Age *</label>
+              <input type="number" id="age" name="age" min="18" max="70" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" class="form-control">
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                <option value="prefer-not-to-say">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Address Information -->
+          <h3>Address Information</h3>
+          <div class="form-group">
+            <label for="address">Address *</label>
+            <input type="text" id="address" name="address" class="form-control" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City/Town *</label>
+              <input type="text" id="city" name="city" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="district">District *</label>
+              <select id="district" name="district" class="form-control" required>
+                <option value="">Select District</option>
+                <option value="Alappuzha">Alappuzha</option>
+                <option value="Ernakulam">Ernakulam</option>
+                <option value="Idukki">Idukki</option>
+                <option value="Kannur">Kannur</option>
+                <option value="Kasaragod">Kasaragod</option>
+                <option value="Kollam">Kollam</option>
+                <option value="Kottayam">Kottayam</option>
+                <option value="Kozhikode">Kozhikode</option>
+                <option value="Malappuram">Malappuram</option>
+                <option value="Palakkad">Palakkad</option>
+                <option value="Pathanamthitta">Pathanamthitta</option>
+                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                <option value="Thrissur">Thrissur</option>
+                <option value="Wayanad">Wayanad</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pincode">PIN Code *</label>
+              <input type="text" id="pincode" name="pincode" class="form-control" required>
+            </div>
+          </div>
+          
+          <!-- Availability Information -->
+          <h3>Availability</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="availability">Availability *</label>
+              <select id="availability" name="availability" class="form-control" required>
+                <option value="">Select Availability</option>
+                <option value="full-time">Full-time (24/7)</option>
+                <option value="weekdays">Weekdays only</option>
+                <option value="weekends">Weekends only</option>
+                <option value="evenings">Evenings only</option>
+                <option value="on-call">On-call (as needed)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="duration">Duration *</label>
+              <select id="duration" name="duration" class="form-control" required>
+                <option value="">Select Duration</option>
+                <option value="1-week">Up to 1 week</option>
+                <option value="2-weeks">Up to 2 weeks</option>
+                <option value="1-month">Up to 1 month</option>
+                <option value="long-term">Long-term (more than 1 month)</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Skills and Experience -->
+          <h3>Skills and Experience</h3>
+          <div class="form-group">
+            <label for="skills">Relevant Skills</label>
+            <textarea id="skills" name="skills" class="form-control" rows="3" placeholder="List any relevant skills you have (e.g., first aid, swimming, boat operation, etc.)"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="experience">Previous Volunteer Experience</label>
+            <textarea id="experience" name="experience" class="form-control" rows="3" placeholder="Describe any previous volunteer experience, especially in disaster relief"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="languages">Languages Spoken *</label>
+            <input type="text" id="languages" name="languages" class="form-control" placeholder="e.g., Malayalam, English, Tamil" required>
+          </div>
+          
+          <!-- Emergency Contact -->
+          <h3>Emergency Contact</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="emergency-name">Emergency Contact Name *</label>
+              <input type="text" id="emergency-name" name="emergencyName" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="emergency-phone">Emergency Contact Phone *</label>
+              <input type="tel" id="emergency-phone" name="emergencyPhone" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="emergency-relation">Relationship *</label>
+            <input type="text" id="emergency-relation" name="emergencyRelation" class="form-control" required>
+          </div>
+          
+          <!-- Additional Information -->
+          <h3>Additional Information</h3>
+          <div class="form-group">
+            <label for="medical-conditions">Medical Conditions</label>
+            <textarea id="medical-conditions" name="medicalConditions" class="form-control" rows="2" placeholder="List any medical conditions or allergies we should be aware of"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="comments">Additional Comments</label>
+            <textarea id="comments" name="comments" class="form-control" rows="3" placeholder="Any additional information you would like to share"></textarea>
+          </div>
+          
+          <!-- Terms and Conditions -->
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms" name="terms" required>
+              I agree to the <a href="#" target="_blank">terms and conditions</a> and understand the risks involved in flood relief activities. *
+            </label>
+          </div>
+          
+          <!-- Submit Button -->
+          <div class="form-group">
+            <button type="submit" class="btn btn-secondary">Register as Volunteer</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize volunteer type selection
+      const volunteerTypes = document.querySelectorAll('.volunteer-type');
+      const volunteerTypeInput = document.getElementById('volunteer-type');
+      
+      volunteerTypes.forEach(type => {
+        type.addEventListener('click', function() {
+          // Remove selected class from all types
+          volunteerTypes.forEach(t => t.classList.remove('selected'));
+          
+          // Add selected class to clicked type
+          this.classList.add('selected');
+          
+          // Set volunteer type in hidden input
+          volunteerTypeInput.value = this.dataset.type;
+        });
+      });
+      
+      // Load alert details if coming from an alert
+      loadAlertDetailsForVolunteer();
+      
+      // Form submission
+      const volunteerForm = document.getElementById('volunteer-form');
+      
+      volunteerForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Validate volunteer type selection
+        if (!volunteerTypeInput.value) {
+          alert('Please select a volunteer type');
+          return;
+        }
+        
+        // Collect form data
+        const formData = new FormData(volunteerForm);
+        const volunteerData = {};
+        
+        formData.forEach((value, key) => {
+          volunteerData[key] = value;
+        });
+        
+        // Submit data to server
+        fetch('/api/volunteers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(volunteerData)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Show success message
+          document.getElementById('volunteer-form').style.display = 'none';
+          document.getElementById('success-message').style.display = 'block';
+          
+          // Scroll to success message
+          window.scrollTo({
+            top: document.getElementById('success-message').offsetTop - 100,
+            behavior: 'smooth'
+          });
+        })
+        .catch(error => {
+          console.error('Error submitting form:', error);
+          alert('There was an error submitting your registration. Please try again later.');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

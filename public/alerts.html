@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts - DisasterGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .alerts-filter {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    
+    .filter-btn {
+      background-color: #f5f5f5;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    
+    .filter-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .filter-btn:hover:not(.active) {
+      background-color: #e0e0e0;
+    }
+    
+    .no-alerts {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts" class="active">Alerts</a></li>
+          <li><a href="/info">Flood Info</a></li>
+          <li><a href="/volunteer">Volunteer</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h1 class="page-title">Disaster Alerts</h1>
+    
+    <div class="alerts-filter">
+      <button class="filter-btn active" data-type="all">All Alerts</button>
+      <button class="filter-btn" data-type="emergency">Emergency</button>
+      <button class="filter-btn" data-type="warning">Warning</button>
+      <button class="filter-btn" data-type="info">Information</button>
+    </div>
+
+    <div id="alerts-container">
+      <!-- Alerts will be loaded here -->
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    let allAlerts = [];
+    const alertsContainer = document.getElementById('alerts-container');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // Function to load all alerts
+    async function loadAlerts() {
+      try {
+        const response = await fetch('/api/alerts');
+        allAlerts = await response.json();
+        displayAlerts('all');
+      } catch (error) {
+        console.error('Error loading alerts:', error);
+        alertsContainer.innerHTML = '<p class="no-alerts">Failed to load alerts. Please try again later.</p>';
+      }
+    }
+
+    // Function to display filtered alerts
+    function displayAlerts(filterType) {
+      const filteredAlerts = filterType === 'all' 
+        ? allAlerts 
+        : allAlerts.filter(alert => alert.type.toLowerCase() === filterType.toLowerCase());
+
+      if (filteredAlerts.length === 0) {
+        alertsContainer.innerHTML = '<p class="no-alerts">No alerts found for the selected filter.</p>';
+        return;
+      }
+
+      alertsContainer.innerHTML = filteredAlerts.map(alert => `
+        <div class="alert-card ${alert.type.toLowerCase()}">
+          <div class="alert-header">
+            <h3>${alert.title}</h3>
+            <span class="alert-type">${alert.type}</span>
+          </div>
+          <p>${alert.description}</p>
+          <div class="alert-footer">
+            <span class="alert-time">Posted: ${new Date(alert.timestamp).toLocaleString()}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Add click event listeners to filter buttons
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        displayAlerts(button.dataset.type);
+      });
+    });
+
+    // Load alerts when the page loads
+    loadAlerts();
+  </script>
+</body>
+</html>

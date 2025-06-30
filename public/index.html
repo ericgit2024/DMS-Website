@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DisasterGuard - Kerala Disaster Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li><a href="/info">Flood Info</a></li>
+          <li><a href="/volunteer">Volunteer</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Kerala Disaster Management System</h1>
+      <p>Stay informed about rain and flood alerts in Kerala. Register as a volunteer to help with flood relief activities.</p>
+      <a href="/alerts" class="btn btn-primary">View Alerts</a>
+      <a href="/volunteer" class="btn btn-secondary">Volunteer Now</a>
+    </div>
+  </section>
+
+  <!-- Latest Alerts Section -->
+  <section class="alerts-section">
+    <div class="container">
+      <h2 class="section-title">Latest Alerts</h2>
+      <div id="latest-alerts">
+        <!-- Alert cards will be loaded dynamically -->
+      </div>
+      <div class="text-center">
+        <a href="/alerts" class="btn btn-primary">View All Alerts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Information Section -->
+  <section class="info-section">
+    <div class="container">
+      <h2 class="section-title">Flood Disaster Information</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Before a Flood</h3>
+          <p>Learn about flood risks in your area and how to prepare your home and family for potential flooding.</p>
+          <a href="/info#before" class="btn btn-sm btn-primary">Learn More</a>
+        </div>
+        <div class="info-card">
+          <h3>During a Flood</h3>
+          <p>Know what to do when flooding occurs, including evacuation procedures and emergency contacts.</p>
+          <a href="/info#during" class="btn btn-sm btn-primary">Learn More</a>
+        </div>
+        <div class="info-card">
+          <h3>After a Flood</h3>
+          <p>Understand the steps to take after a flood, including safety precautions and cleanup procedures.</p>
+          <a href="/info#after" class="btn btn-sm btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteer Section -->
+  <section class="volunteer-section">
+    <div class="container">
+      <h2 class="section-title">Volunteer for Flood Relief</h2>
+      <div class="text-center">
+        <p>Join our team of volunteers to help with flood relief activities in Kerala.</p>
+        <a href="/volunteer" class="btn btn-secondary">Register as Volunteer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Function to load and display latest alerts
+    async function loadLatestAlerts() {
+      try {
+        const response = await fetch('/api/alerts');
+        const alerts = await response.json();
+        const latestAlertsContainer = document.getElementById('latest-alerts');
+        
+        if (alerts.length === 0) {
+          latestAlertsContainer.innerHTML = '<p class="no-alerts">No active alerts at this time.</p>';
+          return;
+        }
+
+        // Display only the 3 most recent alerts
+        const recentAlerts = alerts.slice(0, 3);
+        latestAlertsContainer.innerHTML = recentAlerts.map(alert => `
+          <div class="alert-card ${alert.type.toLowerCase()}">
+            <div class="alert-header">
+              <h3>${alert.title}</h3>
+              <span class="alert-type">${alert.type}</span>
+            </div>
+            <p>${alert.description}</p>
+            <div class="alert-footer">
+              <span class="alert-time">Posted: ${new Date(alert.timestamp).toLocaleString()}</span>
+            </div>
+          </div>
+        `).join('');
+      } catch (error) {
+        console.error('Error loading alerts:', error);
+      }
+    }
+
+    // Load alerts when the page loads
+    loadLatestAlerts();
+  </script>
+</body>
+</html>

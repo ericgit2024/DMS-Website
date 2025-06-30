@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flood Information - DisasterGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .info-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .info-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .info-header p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    
+    .info-nav {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    
+    .info-nav ul {
+      display: flex;
+      list-style: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .info-nav ul li {
+      flex: 1;
+      text-align: center;
+    }
+    
+    .info-nav ul li a {
+      display: block;
+      padding: 1rem;
+      color: var(--dark-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    
+    .info-nav ul li a:hover,
+    .info-nav ul li a.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .info-section {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .info-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .info-section h3 {
+      color: var(--dark-color);
+      margin: 1.5rem 0 1rem;
+    }
+    
+    .info-section p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    
+    .info-section ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    
+    .info-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .emergency-contacts {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .emergency-contacts h3 {
+      color: var(--danger-color);
+      margin-top: 0;
+    }
+    
+    .emergency-contacts ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .emergency-contacts ul li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .emergency-contacts ul li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li><a href="/info" class="active">Flood Info</a></li>
+          <li><a href="/volunteer">Volunteer</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Info Header -->
+  <div class="info-header">
+    <div class="container">
+      <h1>Flood Disaster Information</h1>
+      <p>Learn about flood safety measures and what to do before, during, and after a flood.</p>
+    </div>
+  </div>
+
+  <!-- Info Content -->
+  <div class="container">
+    <!-- Info Navigation -->
+    <div class="info-nav">
+      <ul>
+        <li><a href="#before" class="active">Before a Flood</a></li>
+        <li><a href="#during">During a Flood</a></li>
+        <li><a href="#after">After a Flood</a></li>
+        <li><a href="#emergency">Emergency Contacts</a></li>
+      </ul>
+    </div>
+    
+    <!-- Before a Flood -->
+    <div id="before" class="info-section">
+      <h2>Before a Flood</h2>
+      
+      <h3>Know Your Risk</h3>
+      <p>Understanding your flood risk is the first step in preparing for potential flooding:</p>
+      <ul>
+        <li>Learn about the flood history in your area</li>
+        <li>Check if your property is in a flood-prone zone</li>
+        <li>Stay informed about weather forecasts and flood warnings</li>
+        <li>Sign up for emergency alerts from local authorities</li>
+      </ul>
+      
+      <h3>Prepare Your Home</h3>
+      <p>Take these steps to protect your home from flood damage:</p>
+      <ul>
+        <li>Elevate electrical systems, water heaters, and appliances above expected flood levels</li>
+        <li>Install check valves in plumbing to prevent floodwater from backing up into drains</li>
+        <li>Seal basement walls with waterproofing compounds</li>
+        <li>Clear gutters and drains regularly</li>
+        <li>Consider installing sump pumps with battery backup</li>
+      </ul>
+      
+      <h3>Create an Emergency Plan</h3>
+      <p>Develop a family emergency plan that includes:</p>
+      <ul>
+        <li>Evacuation routes and meeting points</li>
+        <li>Emergency contact information</li>
+        <li>Plan for pets and livestock</li>
+        <li>Location of emergency shelters</li>
+        <li>Communication strategy if family members are separated</li>
+      </ul>
+      
+      <h3>Prepare an Emergency Kit</h3>
+      <p>Assemble an emergency kit with essential supplies:</p>
+      <ul>
+        <li>Water (at least 3 gallons per person)</li>
+        <li>Non-perishable food for at least 3 days</li>
+        <li>Medications and first aid supplies</li>
+        <li>Flashlights and extra batteries</li>
+        <li>Battery-powered or hand-crank radio</li>
+        <li>Personal hygiene items</li>
+        <li>Important documents in waterproof container</li>
+        <li>Cash and emergency contact information</li>
+      </ul>
+    </div>
+    
+    <!-- During a Flood -->
+    <div id="during" class="info-section">
+      <h2>During a Flood</h2>
+      
+      <h3>Stay Informed</h3>
+      <p>Keep updated with the latest information:</p>
+      <ul>
+        <li>Listen to local radio or TV stations for updates</li>
+        <li>Follow emergency services on social media</li>
+        <li>Pay attention to official warnings and instructions</li>
+      </ul>
+      
+      <h3>Evacuation</h3>
+      <p>If authorities order evacuation:</p>
+      <ul>
+        <li>Leave immediately - don't wait</li>
+        <li>Follow recommended evacuation routes</li>
+        <li>Do not drive through flooded areas</li>
+        <li>Move to higher ground away from rivers, streams, and drains</li>
+      </ul>
+      
+      <h3>If You Cannot Evacuate</h3>
+      <p>If you're trapped by floodwater:</p>
+      <ul>
+        <li>Move to the highest level of your home</li>
+        <li>Only go to the roof if necessary and signal for help</li>
+        <li>Do not enter rooms where water covers electrical outlets or cords</li>
+        <li>Avoid contact with floodwater - it may be contaminated</li>
+      </ul>
+      
+      <h3>Water Safety</h3>
+      <p>Remember these critical water safety rules:</p>
+      <ul>
+        <li>Never walk, swim, or drive through floodwater</li>
+        <li>Just 6 inches of fast-moving water can knock you down</li>
+        <li>Just 12 inches of water can float a vehicle</li>
+        <li>Stay off bridges over fast-moving water</li>
+      </ul>
+    </div>
+    
+    <!-- After a Flood -->
+    <div id="after" class="info-section">
+      <h2>After a Flood</h2>
+      
+      <h3>Returning Home</h3>
+      <p>Before returning to your home:</p>
+      <ul>
+        <li>Wait for authorities to declare it safe to return</li>
+        <li>Be alert for damaged roads, bridges, and buildings</li>
+        <li>Avoid floodwaters and areas that are still flooded</li>
+        <li>Use caution when entering buildings</li>
+      </ul>
+      
+      <h3>Safety Precautions</h3>
+      <p>Take these safety measures when cleaning up:</p>
+      <ul>
+        <li>Turn off electricity at the main breaker if water has entered your home</li>
+        <li>Wear protective clothing, including gloves and masks</li>
+        <li>Discard food that has come into contact with floodwater</li>
+        <li>Use bottled water until local water is declared safe</li>
+        <li>Document damage with photos for insurance claims</li>
+      </ul>
+      
+      <h3>Health Concerns</h3>
+      <p>Be aware of these health risks after a flood:</p>
+      <ul>
+        <li>Contaminated water can cause illness</li>
+        <li>Mold can develop quickly in wet conditions</li>
+        <li>Standing water may become breeding grounds for mosquitoes</li>
+        <li>Stress and anxiety are common after disasters</li>
+      </ul>
+      
+      <h3>Recovery Resources</h3>
+      <p>Seek help from these resources:</p>
+      <ul>
+        <li>Contact your insurance company to file claims</li>
+        <li>Apply for disaster assistance if available</li>
+        <li>Reach out to local relief organizations</li>
+        <li>Connect with community support groups</li>
+      </ul>
+    </div>
+    
+    <!-- Emergency Contacts -->
+    <div id="emergency" class="info-section">
+      <h2>Emergency Contacts</h2>
+      
+      <p>Keep these important contact numbers handy during flood emergencies:</p>
+      
+      <div class="emergency-contacts">
+        <h3>Emergency Services</h3>
+        <ul>
+          <li>
+            <span>National Emergency Number</span>
+            <span>112</span>
+          </li>
+          <li>
+            <span>Kerala State Emergency Operations Centre</span>
+            <span>1077</span>
+          </li>
+          <li>
+            <span>Kerala State Disaster Management Authority</span>
+            <span>0471-2364424</span>
+          </li>
+          <li>
+            <span>Kerala Fire & Rescue Services</span>
+            <span>101</span>
+          </li>
+          <li>
+            <span>Kerala Police</span>
+            <span>100</span>
+          </li>
+          <li>
+            <span>Ambulance Services</span>
+            <span>108</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="emergency-contacts">
+        <h3>District Emergency Operations Centers</h3>
+        <ul>
+          <li>
+            <span>Thiruvananthapuram</span>
+            <span>0471-2730045</span>
+          </li>
+          <li>
+            <span>Kollam</span>
+            <span>0474-2794002</span>
+          </li>
+          <li>
+            <span>Pathanamthitta</span>
+            <span>0468-2322515</span>
+          </li>
+          <li>
+            <span>Alappuzha</span>
+            <span>0477-2238630</span>
+          </li>
+          <li>
+            <span>Kottayam</span>
+            <span>0481-2566300</span>
+          </li>
+          <li>
+            <span>Idukki</span>
+            <span>0486-2233111</span>
+          </li>
+          <li>
+            <span>Ernakulam</span>
+            <span>0484-2423513</span>
+          </li>
+          <li>
+            <span>Thrissur</span>
+            <span>0487-2362424</span>
+          </li>
+          <li>
+            <span>Palakkad</span>
+            <span>0491-2505309</span>
+          </li>
+          <li>
+            <span>Malappuram</span>
+            <span>0483-2736320</span>
+          </li>
+          <li>
+            <span>Kozhikode</span>
+            <span>0495-2371002</span>
+          </li>
+          <li>
+            <span>Wayanad</span>
+            <span>0493-6204151</span>
+          </li>
+          <li>
+            <span>Kannur</span>
+            <span>0497-2713266</span>
+          </li>
+          <li>
+            <span>Kasaragod</span>
+            <span>0499-4257700</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('.info-nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all links
+        document.querySelectorAll('.info-nav a').forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Add active class to clicked link
+        this.classList.add('active');
+        
+        // Smooth scroll to target section
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetSection.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Highlight nav item based on scroll position
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.info-section');
+      const navLinks = document.querySelectorAll('.info-nav a');
+      
+      let currentSection = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+        
+        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+          currentSection = '#' + section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

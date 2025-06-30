@@ -1,0 +1,30 @@
+[
+  {
+    "id": "mciu5723ebpd6",
+    "name": "Eric Koshy",
+    "email": "ericbkoshy@gmail.com",
+    "phone": "9605485627",
+    "address": "Payittel House, Eruva P.O",
+    "city": "Kayamkulam, Kerala, India",
+    "district": "Alappuzha",
+    "pincode": "690572",
+    "age": "25",
+    "gender": "male",
+    "availability": "full-time",
+    "duration": "long-term",
+    "skills": "Swimming",
+    "experience": "Not specifically",
+    "languages": "Malayalam",
+    "emergencyContact": {
+      "name": "Binu",
+      "phone": "9605485627",
+      "relation": "Father"
+    },
+    "medicalConditions": "nil",
+    "comments": "nil",
+    "volunteerType": "rescue",
+    "timestamp": "2025-06-30T08:27:00.219Z",
+    "status": "approved",
+    "updatedAt": "2025-06-30T08:30:57.673Z"
+  }
+]

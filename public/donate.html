@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate - DisasterGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .donate-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .donate-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .donate-header p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    
+    .donate-section {
+      padding: 3rem 0;
+    }
+    
+    .donate-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .donate-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .donate-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .donate-card p {
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    
+    .donate-logo {
+      max-width: 200px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .donate-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    
+    .donation-info {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .donation-info h3 {
+      color: var(--dark-color);
+      margin-bottom: 1rem;
+    }
+    
+    .donation-info ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .donation-info ul li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .donation-info ul li:last-child {
+      border-bottom: none;
+    }
+    
+    .donation-info ul li strong {
+      display: inline-block;
+      min-width: 150px;
+    }
+    
+    .impact-section {
+      padding: 3rem 0;
+      background-color: #f0f7ff;
+    }
+    
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .impact-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .impact-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .impact-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .impact-card h3 {
+      color: var(--dark-color);
+      margin-bottom: 1rem;
+    }
+    
+    .impact-card p {
+      color: var(--gray-color);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li><a href="/info">Flood Info</a></li>
+          <li><a href="/volunteer">Volunteer</a></li>
+          <li><a href="/donate" class="active">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Donate Header -->
+  <div class="donate-header">
+    <div class="container">
+      <h1>Donate to Kerala Flood Relief</h1>
+      <p>Your contribution can make a significant difference in the lives of those affected by floods in Kerala. All donations go directly to the Chief Minister's Distress Relief Fund.</p>
+    </div>
+  </div>
+
+  <!-- Donate Content -->
+  <section class="donate-section">
+    <div class="container donate-container">
+      <div class="donate-card">
+        <img src="https://cdn.s3waas.gov.in/s313f9896df61279c928f19721878fac41/uploads/2018/03/2018031735.jpg" alt="Kerala Chief Minister's Distress Relief Fund" class="donate-logo">
+        <h2>Chief Minister's Distress Relief Fund (CMDRF)</h2>
+        <p>The Chief Minister's Distress Relief Fund (CMDRF) accepts voluntary contributions from individuals, organizations, and institutions. All contributions to CMDRF are exempted from Income Tax under section 80(G).</p>
+        <p>100% of your donation goes directly to relief efforts. The Kerala government ensures transparent utilization of funds for disaster relief and rehabilitation.</p>
+        <a href="https://donation.cmdrf.kerala.gov.in/" target="_blank" class="btn btn-primary donate-btn">Donate Now</a>
+      </div>
+      
+      <div class="donation-info">
+        <h3>Bank Account Details</h3>
+        <ul>
+          <li><strong>Account Name:</strong> Chief Minister's Distress Relief Fund</li>
+          <li><strong>Account Number:</strong> 67319948232</li>
+          <li><strong>Bank:</strong> State Bank of India</li>
+          <li><strong>Branch:</strong> City Branch, Thiruvananthapuram</li>
+          <li><strong>IFSC:</strong> SBIN0070028</li>
+          <li><strong>SWIFT Code:</strong> SBININBBT08</li>
+        </ul>
+      </div>
+      
+      <div class="donation-info">
+        <h3>UPI Payment</h3>
+        <p>You can also donate using UPI:</p>
+        <ul>
+          <li><strong>UPI ID:</strong> keralacmdrf@sbi</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Impact Section -->
+  <section class="impact-section">
+    <div class="container">
+      <h2 class="section-title">Your Donation's Impact</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-icon">🏠</div>
+          <h3>Emergency Shelter</h3>
+          <p>Provides temporary shelter, bedding, and basic amenities for displaced families.</p>
+        </div>
+        
+        <div class="impact-card">
+          <div class="impact-icon">🍲</div>
+          <h3>Food & Water</h3>
+          <p>Supplies essential food items and clean drinking water to affected communities.</p>
+        </div>
+        
+        <div class="impact-card">
+          <div class="impact-icon">💊</div>
+          <h3>Medical Aid</h3>
+          <p>Supports medical camps, medicines, and healthcare services in flood-affected areas.</p>
+        </div>
+        
+        <div class="impact-card">
+          <div class="impact-icon">🏗️</div>
+          <h3>Rebuilding Lives</h3>
+          <p>Helps in long-term rehabilitation and reconstruction of damaged homes and infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
