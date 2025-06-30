@@ -300,6 +300,17 @@
                     <option value="extreme">Extreme</option>
                   </select>
                 </div>
+                
+                <div class="form-group" id="rain-severity-field" style="display: none;">
+                  <label for="rain-severity">Rainfall Severity *</label>
+                  <select id="rain-severity" name="rainSeverity" class="form-control">
+                    <option value="">Select Severity</option>
+                    <option value="red">Red</option>
+                    <option value="orange">Orange</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                  </select>
+                </div>
               </div>
               
               <div class="form-group">
@@ -353,7 +364,24 @@
         <!-- Volunteers Section -->
         <div id="volunteers-section" class="admin-content" style="display:none;">
           <h2>Registered Volunteers</h2>
-          <div id="volunteers-list"></div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>District</th>
+                  <th>Program</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="volunteers-table-body">
+                <!-- Volunteer rows will be loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
           <div id="volunteer-details-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
             <div style="background:#fff;padding:2rem;border-radius:8px;max-width:600px;width:90%;position:relative;">
               <button id="close-volunteer-details" style="position:absolute;top:10px;right:10px;font-size:1.2rem;">&times;</button>
@@ -447,14 +475,24 @@
       // Alert type selection
       const alertTypeSelect = document.getElementById('alert-type');
       const severityField = document.getElementById('severity-field');
+      const rainSeverityField = document.getElementById('rain-severity-field');
       
       alertTypeSelect.addEventListener('change', function() {
         if (this.value === 'flood') {
           severityField.style.display = 'block';
           document.getElementById('severity').setAttribute('required', 'required');
+          rainSeverityField.style.display = 'none';
+          document.getElementById('rain-severity').removeAttribute('required');
+        } else if (this.value === 'rain') {
+          rainSeverityField.style.display = 'block';
+          document.getElementById('rain-severity').setAttribute('required', 'required');
+          severityField.style.display = 'none';
+          document.getElementById('severity').removeAttribute('required');
         } else {
           severityField.style.display = 'none';
           document.getElementById('severity').removeAttribute('required');
+          rainSeverityField.style.display = 'none';
+          document.getElementById('rain-severity').removeAttribute('required');
         }
       });
       
@@ -485,6 +523,9 @@
           location: alertData.location,
           date: alertData.date
         };
+        if (alertData.type === 'rain') {
+          postData.rainSeverity = alertData.rainSeverity;
+        }
         // Determine if this is a create or update operation
         const method = isEditMode ? 'PUT' : 'POST';
         const url = isEditMode ? `/api/alerts/${alertData.id}` : '/api/alerts';
@@ -675,26 +716,25 @@
     
     // Fetch volunteers from server
     function fetchVolunteers() {
-      fetch('/api/volunteers')
+      fetch('/api/volunteers', { credentials: 'include' })
         .then(response => response.json())
         .then(volunteers => {
           const tableBody = document.getElementById('volunteers-table-body');
-          document.getElementById('volunteers-count-label').textContent = `Total: ${volunteers.length}`;
-          
-          if (volunteers.length === 0) {
+          // Only show volunteers with status pending or approved
+          const visibleVolunteers = volunteers.filter(v => v.status !== 'rejected');
+          if (visibleVolunteers.length === 0) {
             tableBody.innerHTML = '<tr><td colspan="7" class="text-center">No volunteers found.</td></tr>';
             return;
           }
-          
           let tableHTML = '';
-          volunteers.forEach(volunteer => {
+          visibleVolunteers.forEach(volunteer => {
             tableHTML += `
               <tr>
                 <td>${volunteer.name}</td>
                 <td>${volunteer.email}</td>
                 <td>${volunteer.phone}</td>
                 <td>${volunteer.district}</td>
-                <td>${volunteer.type}</td>
+                <td>${volunteer.program || ''}</td>
                 <td><span class="status-badge ${getStatusClass(volunteer.status)}">${volunteer.status}</span></td>
                 <td>
                   <div class="action-buttons">
@@ -705,9 +745,7 @@
               </tr>
             `;
           });
-          
           tableBody.innerHTML = tableHTML;
-          
           // Add event listeners to view and delete buttons
           document.querySelectorAll('.view-volunteer-btn').forEach(button => {
             button.addEventListener('click', function() {
@@ -715,7 +753,6 @@
               viewVolunteerDetails(volunteerId);
             });
           });
-          
           document.querySelectorAll('.delete-volunteer-btn').forEach(button => {
             button.addEventListener('click', function() {
               const volunteerId = this.dataset.id;
@@ -1096,8 +1133,14 @@
                   if (alert.type === 'flood') {
                     document.getElementById('severity-field').style.display = 'block';
                     document.getElementById('severity').value = alert.severity || '';
+                    document.getElementById('rain-severity-field').style.display = 'none';
+                  } else if (alert.type === 'rain') {
+                    document.getElementById('rain-severity-field').style.display = 'block';
+                    document.getElementById('rain-severity').value = alert.rainSeverity || '';
+                    document.getElementById('severity-field').style.display = 'none';
                   } else {
                     document.getElementById('severity-field').style.display = 'none';
+                    document.getElementById('rain-severity-field').style.display = 'none';
                   }
                   
                   // Show the form

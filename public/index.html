@@ -6,6 +6,13 @@
   <title>DisasterGuard - Kerala Disaster Management</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .rain-red { background: #ffebee !important; border-left: 6px solid #d32f2f; }
+    .rain-orange { background: #fff3e0 !important; border-left: 6px solid #f57c00; }
+    .rain-yellow { background: #fffde7 !important; border-left: 6px solid #fbc02d; }
+    .rain-green { background: #e8f5e9 !important; border-left: 6px solid #388e3c; }
+    .rain-severity-label { font-weight: bold; margin-left: 8px; }
+  </style>
 </head>
 <body>
   <!-- Header Section -->
@@ -122,18 +129,32 @@
 
         // Display only the 3 most recent alerts
         const recentAlerts = alerts.slice(0, 3);
-        latestAlertsContainer.innerHTML = recentAlerts.map(alert => `
-          <div class="alert-card ${alert.type.toLowerCase()}">
-            <div class="alert-header">
-              <h3>${alert.title}</h3>
-              <span class="alert-type">${alert.type}</span>
+        latestAlertsContainer.innerHTML = recentAlerts.map(alert => {
+          let rainClass = '';
+          if (alert.type === 'rain' && alert.rainSeverity) {
+            switch (alert.rainSeverity) {
+              case 'red': rainClass = 'rain-red'; break;
+              case 'orange': rainClass = 'rain-orange'; break;
+              case 'yellow': rainClass = 'rain-yellow'; break;
+              case 'green': rainClass = 'rain-green'; break;
+              default: rainClass = '';
+            }
+          }
+          return `
+            <div class="alert-card ${alert.type.toLowerCase()} ${rainClass}">
+              <div class="alert-header">
+                <h3>${alert.title}</h3>
+                <span class="alert-type">${alert.type}
+                  ${alert.type === 'rain' && alert.rainSeverity ? `- <span class='rain-severity-label' style='color:${alert.rainSeverity};text-transform:capitalize;'>${alert.rainSeverity}</span>` : ''}
+                </span>
+              </div>
+              <p>${alert.description}</p>
+              <div class="alert-footer">
+                <span class="alert-time">Posted: ${new Date(alert.timestamp).toLocaleString()}</span>
+              </div>
             </div>
-            <p>${alert.description}</p>
-            <div class="alert-footer">
-              <span class="alert-time">Posted: ${new Date(alert.timestamp).toLocaleString()}</span>
-            </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       } catch (error) {
         console.error('Error loading alerts:', error);
       }
