@@ -1,0 +1,4 @@
+#info-dropdown-link { position: relative; cursor: pointer; }
+#info-dropdown { min-width: 180px; border-radius: 0 0 8px 8px; }
+#info-dropdown li a { color: #222; text-decoration: none; }
+#info-dropdown li a:hover { background: #f0f7ff; color: #1976d2; }

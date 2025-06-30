@@ -53,6 +53,7 @@
     "volunteerType": "rescue",
     "program": "rescue",
     "timestamp": "2025-06-30T12:30:17.646Z",
-    "status": "pending"
+    "status": "approved",
+    "updatedAt": "2025-06-30T14:34:21.042Z"
   }
 ]

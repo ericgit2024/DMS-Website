@@ -11,6 +11,7 @@ const volunteersRoutes = require('./routes/volunteers');
 const authRoutes = require('./routes/auth');
 const contactRoutes = require('./routes/contact');
 const statsRoutes = require('./routes/stats');
+const reportsRouter = require('./routes/reports');
 
 // Create Express app
 const app = express();
@@ -79,6 +80,7 @@ app.use('/auth', authRoutes); // <-- Fix: mount /auth for login/logout/check
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/reports', reportsRouter);
 
 // Legacy routes for backward compatibility
 app.post('/api/login', (req, res) => {

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Incident - DisasterGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/info-dropdown.css">
+  <style>
+    .report-section { background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 2rem; max-width: 600px; margin: 2rem auto; }
+    .report-section h2 { color: var(--primary-color); margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
+    .form-group input[type="text"], .form-group input[type="tel"], .form-group textarea, .form-group select { width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
+    .form-group input[type="file"] { margin-top: 0.5rem; }
+    .form-group .custom-incident { margin-top: 0.5rem; }
+    .form-group .captcha-label { display: flex; align-items: center; gap: 1rem; }
+    .form-group .captcha-input { width: 80px; }
+    .form-actions { text-align: right; }
+    .form-actions button { padding: 0.7rem 2rem; font-size: 1.1rem; }
+    .error-msg { color: #d32f2f; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    @media (max-width: 600px) { .report-section { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li style="position:relative;"><a href="/info" id="info-dropdown-link">Disaster Info ▼</a>
+            <ul id="info-dropdown" style="display:none;position:absolute;z-index:1000;background:white;list-style:none;padding:0;margin:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+              <li><a href="/info" style="display:block;padding:0.5rem 1rem;">Flood Info</a></li>
+              <li><a href="/landslide-info" style="display:block;padding:0.5rem 1rem;">Landslide Info</a></li>
+              <li><a href="/cyclone-info" style="display:block;padding:0.5rem 1rem;">Cyclone Info</a></li>
+            </ul>
+          </li>
+          <li><a href="/volunteer">Volunteer</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/report" class="active">Report Incident</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section class="report-section">
+    <h2>Report a Local Disaster Incident</h2>
+    <form id="incidentForm" enctype="multipart/form-data" novalidate>
+      <div class="form-group">
+        <label for="incidentType">Incident Type <span style="color:#d32f2f;">*</span></label>
+        <select id="incidentType" name="incidentType" required>
+          <option value="">Select...</option>
+          <option value="Waterlogging">Waterlogging</option>
+          <option value="Landslide">Landslide</option>
+          <option value="Fallen Trees / Blocked Roads">Fallen Trees / Blocked Roads</option>
+          <option value="Power Outage">Power Outage</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="customIncident" name="customIncident" class="custom-incident" placeholder="Describe the incident type" style="display:none;" maxlength="50">
+      </div>
+      <div class="form-group">
+        <label for="location">Location <span style="color:#d32f2f;">*</span></label>
+        <input type="text" id="location" name="location" required maxlength="100">
+      </div>
+      <div class="form-group">
+        <label for="description">Detailed Description <span style="color:#d32f2f;">*</span></label>
+        <textarea id="description" name="description" rows="4" required maxlength="500"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="photos">Upload Photos (up to 3, optional)</label>
+        <input type="file" id="photos" name="photos" accept="image/*" multiple>
+      </div>
+      <div class="form-group">
+        <label for="name">Your Name <span style="color:#d32f2f;">*</span></label>
+        <input type="text" id="name" name="name" required maxlength="50">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number <span style="color:#d32f2f;">*</span></label>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number">
+      </div>
+      <div class="form-group">
+        <label class="captcha-label">What is <span id="captchaNum1"></span> + <span id="captchaNum2"></span>? <input type="text" id="captcha" class="captcha-input" required></label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit Report</button>
+      </div>
+      <div id="formMsg" class="error-msg"></div>
+    </form>
+  </section>
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-container" style="display: flex; justify-content: space-between; gap: 3rem; flex-wrap: wrap;">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/js/info-dropdown.js"></script>
+  <script>
+    // Dropdown for incident type
+    document.getElementById('incidentType').addEventListener('change', function() {
+      const custom = document.getElementById('customIncident');
+      custom.style.display = this.value === 'Other' ? 'block' : 'none';
+      if (this.value !== 'Other') custom.value = '';
+    });
+    // Simple math captcha
+    const n1 = Math.floor(Math.random()*10+1), n2 = Math.floor(Math.random()*10+1);
+    document.getElementById('captchaNum1').textContent = n1;
+    document.getElementById('captchaNum2').textContent = n2;
+    // Form validation and submit
+    document.getElementById('incidentForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formMsg = document.getElementById('formMsg');
+      formMsg.textContent = '';
+      // Validate required fields
+      if (!form.incidentType.value || (form.incidentType.value === 'Other' && !form.customIncident.value) || !form.location.value || !form.description.value || !form.name.value || !form.phone.value) {
+        formMsg.textContent = 'Please fill all required fields.';
+        return;
+      }
+      // Phone validation
+      if (!/^[0-9]{10}$/.test(form.phone.value)) {
+        formMsg.textContent = 'Enter a valid 10-digit phone number.';
+        return;
+      }
+      // Captcha validation
+      if (parseInt(form.captcha.value) !== n1 + n2) {
+        formMsg.textContent = 'Incorrect answer to the spam protection question.';
+        return;
+      }
+      // Photo validation
+      if (form.photos.files.length > 3) {
+        formMsg.textContent = 'You can upload up to 3 photos only.';
+        return;
+      }
+      // Prepare form data
+      const data = new FormData(form);
+      try {
+        const res = await fetch('/api/reports', { method: 'POST', body: data });
+        const result = await res.json();
+        if (res.ok) {
+          form.reset();
+          formMsg.style.color = '#388e3c';
+          formMsg.textContent = 'Report submitted successfully! Thank you.';
+        } else {
+          formMsg.textContent = result.error || 'Submission failed. Try again.';
+        }
+      } catch (err) {
+        formMsg.textContent = 'Submission failed. Try again.';
+      }
+    });
+  </script>
+</body>
+</html>

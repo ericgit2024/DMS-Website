@@ -43,13 +43,21 @@ function isAuthenticated(req, res, next) {
   res.status(401).json({ error: 'Unauthorized' });
 }
 
-// Get all volunteers (admin only)
+// Get all volunteers (admin only, always read from file, with error handling)
 router.get('/', isAuthenticated, (req, res) => {
   const volunteersFile = path.join(__dirname, '..', 'data', 'volunteers', 'volunteers.json');
-  const volunteers = readJsonFile(volunteersFile);
-  // Only filter out rejected
-  const visibleVolunteers = volunteers.filter(v => v.status !== 'rejected');
-  res.json(visibleVolunteers);
+  try {
+    if (!fs.existsSync(volunteersFile)) return res.json([]);
+    const data = fs.readFileSync(volunteersFile, 'utf8');
+    const volunteers = JSON.parse(data);
+    if (!Array.isArray(volunteers)) throw new Error('Malformed volunteers data');
+    // Only filter out rejected
+    const visibleVolunteers = volunteers.filter(v => v.status !== 'rejected');
+    res.json(visibleVolunteers);
+  } catch (error) {
+    console.error('Error reading volunteers:', error);
+    res.status(500).json({ error: 'Failed to load volunteers. Please check the volunteers data file.' });
+  }
 });
 
 // Register a new volunteer

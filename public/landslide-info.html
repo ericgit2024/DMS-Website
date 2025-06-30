@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landslide Information - DisasterGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/info-dropdown.css">
+  <style>
+    .info-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .info-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .info-header p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    .info-nav {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .info-nav ul {
+      display: flex;
+      list-style: none;
+      border-bottom: 1px solid var(--border-color);
+      margin: 0;
+      padding: 0;
+    }
+    .info-nav ul li {
+      flex: 1;
+      text-align: center;
+    }
+    .info-nav ul li a {
+      display: block;
+      padding: 1rem;
+      color: var(--dark-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .info-nav ul li a:hover,
+    .info-nav ul li a.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    .info-section {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .info-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .info-section ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    .info-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    .emergency-contacts {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .emergency-contacts h3 {
+      color: var(--danger-color);
+      margin-top: 0;
+    }
+    .emergency-contacts ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .emergency-contacts ul li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .emergency-contacts ul li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li style="position:relative;"><a href="/info" id="info-dropdown-link">Disaster Info ▼</a>
+            <ul id="info-dropdown" style="display:none;position:absolute;z-index:1000;background:white;list-style:none;padding:0;margin:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+              <li><a href="/info" style="display:block;padding:0.5rem 1rem;">Flood Info</a></li>
+              <li><a href="/landslide-info" style="display:block;padding:0.5rem 1rem;">Landslide Info</a></li>
+              <li><a href="/cyclone-info" style="display:block;padding:0.5rem 1rem;">Cyclone Info</a></li>
+            </ul>
+          </li>
+          <li><a href="/volunteer">Volunteer</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="info-header">
+    <div class="container">
+      <h1>Landslide Disaster Information</h1>
+      <p>Learn about landslide risks, preparedness, and safety measures to protect yourself and your community.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="info-nav">
+      <ul>
+        <li><a href="#before" class="active">Before a Landslide</a></li>
+        <li><a href="#during">During a Landslide</a></li>
+        <li><a href="#after">After a Landslide</a></li>
+        <li><a href="#emergency">Emergency Contacts</a></li>
+      </ul>
+    </div>
+    <div id="before" class="info-section">
+      <h2>Before a Landslide</h2>
+      <ul>
+        <li>Be aware of areas prone to landslides, especially after heavy rainfall.</li>
+        <li>Listen to local warnings and weather reports.</li>
+        <li>Prepare an emergency kit and evacuation plan.</li>
+        <li>Strengthen slopes and drainage around your home if possible.</li>
+      </ul>
+    </div>
+    <div id="during" class="info-section">
+      <h2>During a Landslide</h2>
+      <ul>
+        <li>Move to higher ground immediately if you suspect a landslide is occurring.</li>
+        <li>Avoid river valleys and low-lying areas.</li>
+        <li>Stay alert for unusual sounds, such as cracking trees or rocks colliding.</li>
+        <li>Follow evacuation orders from authorities.</li>
+      </ul>
+    </div>
+    <div id="after" class="info-section">
+      <h2>After a Landslide</h2>
+      <ul>
+        <li>Stay away from the slide area; further slides may occur.</li>
+        <li>Check for injured or trapped people near the slide, without entering the direct slide area.</li>
+        <li>Report broken utility lines to authorities.</li>
+        <li>Listen to local news for updates and instructions.</li>
+      </ul>
+    </div>
+    <div id="emergency" class="info-section">
+      <h2>Emergency Contacts</h2>
+      <p>Keep these important contact numbers handy during landslide emergencies:</p>
+      <div class="emergency-contacts">
+        <h3>Emergency Services</h3>
+        <ul>
+          <li><span>National Emergency Number</span><span>112</span></li>
+          <li><span>Kerala State Emergency Operations Centre</span><span>1077</span></li>
+          <li><span>Kerala State Disaster Management Authority</span><span>0471-2364424</span></li>
+          <li><span>Kerala Fire & Rescue Services</span><span>101</span></li>
+          <li><span>Kerala Police</span><span>100</span></li>
+          <li><span>Ambulance Services</span><span>108</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-container" style="display: flex; justify-content: space-between; gap: 3rem; flex-wrap: wrap;">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/js/info-dropdown.js"></script>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('.info-nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.info-nav a').forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        window.scrollTo({ top: targetSection.offsetTop - 100, behavior: 'smooth' });
+      });
+    });
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.info-section');
+      const navLinks = document.querySelectorAll('.info-nav a');
+      let currentSection = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+          currentSection = '#' + section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

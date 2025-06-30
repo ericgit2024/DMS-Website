@@ -1,0 +1,13 @@
+[
+  {
+    "id": "957768b5-dc3f-4eb0-afe3-389e45f09522",
+    "incidentType": "Power Outage",
+    "location": "Edappally",
+    "description": "Power Lines Disconnected due to heavy rain for the past 5 hours",
+    "photos": [],
+    "name": "Koshy",
+    "phone": "6235090209",
+    "status": "Pending",
+    "createdAt": "2025-06-30T14:15:17.495Z"
+  }
+]

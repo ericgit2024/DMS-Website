@@ -6,6 +6,7 @@
   <title>DisasterGuard - Kerala Disaster Management</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/info-dropdown.css">
   <style>
     .rain-red { background: #ffebee !important; border-left: 6px solid #d32f2f; }
     .rain-orange { background: #fff3e0 !important; border-left: 6px solid #f57c00; }
@@ -23,10 +24,17 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/alerts">Alerts</a></li>
-          <li><a href="/info">Flood Info</a></li>
+          <li style="position:relative;"><a href="/info" id="info-dropdown-link">Disaster Info ▼</a>
+            <ul id="info-dropdown" style="display:none;position:absolute;z-index:1000;background:white;list-style:none;padding:0;margin:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+              <li><a href="/info" style="display:block;padding:0.5rem 1rem;">Flood Info</a></li>
+              <li><a href="/landslide-info" style="display:block;padding:0.5rem 1rem;">Landslide Info</a></li>
+              <li><a href="/cyclone-info" style="display:block;padding:0.5rem 1rem;">Cyclone Info</a></li>
+            </ul>
+          </li>
           <li><a href="/volunteer">Volunteer</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/report">Report Incident</a></li>
         </ul>
       </nav>
     </div>
@@ -55,25 +63,25 @@
     </div>
   </section>
 
-  <!-- Information Section -->
+  <!-- Disaster Information Section -->
   <section class="info-section">
     <div class="container">
-      <h2 class="section-title">Flood Disaster Information</h2>
+      <h2 class="section-title">Disaster Information</h2>
       <div class="info-grid">
         <div class="info-card">
-          <h3>Before a Flood</h3>
-          <p>Learn about flood risks in your area and how to prepare your home and family for potential flooding.</p>
-          <a href="/info#before" class="btn btn-sm btn-primary">Learn More</a>
+          <h3>Flood</h3>
+          <p>Learn about flood risks, preparedness, and safety measures to protect yourself and your community.</p>
+          <a href="/info" class="btn btn-sm btn-primary">Flood Info</a>
         </div>
         <div class="info-card">
-          <h3>During a Flood</h3>
-          <p>Know what to do when flooding occurs, including evacuation procedures and emergency contacts.</p>
-          <a href="/info#during" class="btn btn-sm btn-primary">Learn More</a>
+          <h3>Landslide</h3>
+          <p>Find out how to stay safe before, during, and after landslides, and how to prepare your home and family.</p>
+          <a href="/landslide-info" class="btn btn-sm btn-primary">Landslide Info</a>
         </div>
         <div class="info-card">
-          <h3>After a Flood</h3>
-          <p>Understand the steps to take after a flood, including safety precautions and cleanup procedures.</p>
-          <a href="/info#after" class="btn btn-sm btn-primary">Learn More</a>
+          <h3>Cyclone</h3>
+          <p>Get information on cyclone safety, evacuation, and recovery to protect yourself and your loved ones.</p>
+          <a href="/cyclone-info" class="btn btn-sm btn-primary">Cyclone Info</a>
         </div>
       </div>
     </div>
@@ -114,6 +122,7 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script src="/js/info-dropdown.js"></script>
   <script>
     // Function to load and display latest alerts
     async function loadLatestAlerts() {
@@ -159,6 +168,23 @@
         console.error('Error loading alerts:', error);
       }
     }
+
+    // Info dropdown (robust for all pages)
+    document.addEventListener('DOMContentLoaded', function() {
+      const infoLink = document.getElementById('info-dropdown-link');
+      const dropdown = document.getElementById('info-dropdown');
+      if (infoLink && dropdown) {
+        infoLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+        document.addEventListener('click', function(e) {
+          if (!infoLink.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.style.display = 'none';
+          }
+        });
+      }
+    });
 
     // Load alerts when the page loads
     loadLatestAlerts();

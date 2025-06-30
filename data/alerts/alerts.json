@@ -1,5 +1,15 @@
 [
   {
+    "id": "mcj7ap5c1yy1h",
+    "title": "Orange Alert",
+    "type": "rain",
+    "description": "Next 1 hr orange alert issued",
+    "location": "Kochi",
+    "date": "2025-06-30",
+    "timestamp": "2025-06-30T14:35:11.952Z",
+    "createdBy": "admin"
+  },
+  {
     "id": "mcj2xosm63i97",
     "title": "Orange Alert",
     "type": "rain",

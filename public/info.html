@@ -6,6 +6,7 @@
   <title>Flood Information - DisasterGuard</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/info-dropdown.css">
   <style>
     .info-header {
       background-color: var(--primary-color);
@@ -132,7 +133,13 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/alerts">Alerts</a></li>
-          <li><a href="/info" class="active">Flood Info</a></li>
+          <li style="position:relative;"><a href="/info" id="info-dropdown-link">Disaster Info ▼</a>
+            <ul id="info-dropdown" style="display:none;position:absolute;z-index:1000;background:white;list-style:none;padding:0;margin:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+              <li><a href="/info" style="display:block;padding:0.5rem 1rem;">Flood Info</a></li>
+              <li><a href="/landslide-info" style="display:block;padding:0.5rem 1rem;">Landslide Info</a></li>
+              <li><a href="/cyclone-info" style="display:block;padding:0.5rem 1rem;">Cyclone Info</a></li>
+            </ul>
+          </li>
           <li><a href="/volunteer">Volunteer</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/contact">Contact</a></li>
@@ -414,6 +421,7 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script src="/js/info-dropdown.js"></script>
   <script>
     // Smooth scrolling for anchor links
     document.querySelectorAll('.info-nav a').forEach(anchor => {

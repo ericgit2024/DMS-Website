@@ -6,6 +6,7 @@
   <title>Alerts - DisasterGuard</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/info-dropdown.css">
   <style>
     .alerts-filter {
       display: flex;
@@ -40,6 +41,34 @@
       border-radius: 8px;
       margin-bottom: 2rem;
     }
+
+    .community-reports-section {
+      margin-top: 3rem;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+
+    .report-photos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .report-photos img {
+      max-width: 120px;
+      max-height: 90px;
+      margin: 0 5px 5px 0;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -51,10 +80,17 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/alerts" class="active">Alerts</a></li>
-          <li><a href="/info">Flood Info</a></li>
+          <li style="position:relative;"><a href="/info" id="info-dropdown-link">Disaster Info ▼</a>
+            <ul id="info-dropdown" style="display:none;position:absolute;z-index:1000;background:white;list-style:none;padding:0;margin:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+              <li><a href="/info" style="display:block;padding:0.5rem 1rem;">Flood Info</a></li>
+              <li><a href="/landslide-info" style="display:block;padding:0.5rem 1rem;">Landslide Info</a></li>
+              <li><a href="/cyclone-info" style="display:block;padding:0.5rem 1rem;">Cyclone Info</a></li>
+            </ul>
+          </li>
           <li><a href="/volunteer">Volunteer</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/report">Report Incident</a></li>
         </ul>
       </nav>
     </div>
@@ -74,6 +110,11 @@
     <div id="alerts-container">
       <!-- Alerts will be loaded here -->
     </div>
+
+    <section class="community-reports-section">
+      <h2 class="section-title">Community Reports</h2>
+      <div id="community-reports"></div>
+    </section>
   </main>
 
   <!-- Footer Section -->
@@ -100,6 +141,7 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script src="/js/info-dropdown.js"></script>
   <script>
     let allAlerts = [];
     const alertsContainer = document.getElementById('alerts-container');
@@ -153,6 +195,35 @@
 
     // Load alerts when the page loads
     loadAlerts();
+
+    async function loadCommunityReports() {
+      const container = document.getElementById('community-reports');
+      if (!container) return;
+      try {
+        const res = await fetch('/api/reports/approved');
+        const reports = await res.json();
+        if (!reports.length) {
+          container.innerHTML = '<p class="no-alerts">No community reports at this time.</p>';
+          return;
+        }
+        container.innerHTML = reports.map(r => `
+          <div class="alert-card community-report">
+            <div class="alert-header">
+              <h3>${r.incidentType}</h3>
+              <span class="alert-type">${r.location}</span>
+            </div>
+            <p>${r.description}</p>
+            ${r.photos && r.photos.length ? `<div class='report-photos'>${r.photos.map(p => `<img src='${p}' alt='photo'>`).join('')}</div>` : ''}
+            <div class="alert-footer">
+              <span class="alert-time">Reported by: ${r.name}</span>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        container.innerHTML = '<p class="no-alerts">Could not load community reports.</p>';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadCommunityReports);
   </script>
 </body>
 </html>
