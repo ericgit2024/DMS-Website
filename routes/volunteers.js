@@ -80,9 +80,10 @@ router.post('/', (req, res) => {
   const experience = req.body.experience;
   const languages = req.body.languages;
   const medicalConditions = req.body.medicalConditions;
+  const program = req.body.program;
 
   // Validate required fields
-  if (!name || !email || !phone || !address || !district || !availability || !volunteerType) {
+  if (!name || !email || !phone || !address || !district || !availability || !volunteerType || !program) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
@@ -115,6 +116,7 @@ router.post('/', (req, res) => {
     medicalConditions,
     comments: comments || '',
     volunteerType,
+    program,
     timestamp: new Date().toISOString(),
     status: 'pending' // pending, approved, rejected
   };

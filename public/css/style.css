@@ -1,15 +1,16 @@
 /* Main Stylesheet for DisasterGuard */
 
 :root {
-  --primary-color: #1a73e8;
-  --secondary-color: #34a853;
-  --danger-color: #ea4335;
-  --warning-color: #fbbc05;
-  --light-color: #f8f9fa;
-  --dark-color: #202124;
-  --gray-color: #5f6368;
-  --border-color: #dadce0;
+  --primary-color: #006064;      /* Deep Teal - trustworthy, calm, associated with water */
+  --secondary-color: #2e7d32;    /* Kerala Green - nature, hope, growth */
+  --danger-color: #d32f2f;       /* Strong Red - danger, alerts */
+  --warning-color: #f9a825;      /* Golden Yellow - warnings, caution */
+  --light-color: #f1f8e9;        /* Soft Light Green - background, freshness */
+  --dark-color: #263238;         /* Charcoal Blue-Grey - strong contrast, readability */
+  --gray-color: #78909c;         /* Muted Blue-Grey - secondary text, icons */
+  --border-color: #cfd8dc;       /* Light Blue-Grey - clean subtle borders */
 }
+
 
 * {
   margin: 0;

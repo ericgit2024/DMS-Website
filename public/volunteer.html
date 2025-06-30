@@ -292,6 +292,18 @@
             </div>
           </div>
           
+          <!-- Program Selection -->
+          <div class="form-group">
+            <label for="program">Which program do you want to join? *</label>
+            <select id="program" name="program" class="form-control" required>
+              <option value="">Select Program</option>
+              <option value="rescue">Rescue Operations</option>
+              <option value="medical">Medical Support</option>
+              <option value="relief">Relief Distribution</option>
+              <option value="shelter">Shelter Management</option>
+            </select>
+          </div>
+          
           <!-- Availability Information -->
           <h3>Availability</h3>
           <div class="form-row">
@@ -385,12 +397,11 @@
   <!-- Footer Section -->
   <footer>
     <div class="container">
-      <div class="footer-container">
+      <div class="footer-container" style="display: flex; justify-content: space-between; gap: 3rem; flex-wrap: wrap;">
         <div class="footer-section">
           <h3>DisasterGuard</h3>
           <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
         </div>
-
         <div class="footer-section">
           <h3>Important Contacts</h3>
           <ul>
@@ -401,7 +412,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2023 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+        <p>&copy; 2025 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -459,7 +470,7 @@
         })
         .then(response => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            return response.json().then(err => { throw err; });
           }
           return response.json();
         })
@@ -475,8 +486,11 @@
           });
         })
         .catch(error => {
-          console.error('Error submitting form:', error);
-          alert('There was an error submitting your registration. Please try again later.');
+          if (error && error.error === 'Email already registered') {
+            alert('This email is already registered as a volunteer. Please use a different email address.');
+          } else {
+            alert('There was an error submitting your registration. Please try again later.');
+          }
         });
       });
     });
