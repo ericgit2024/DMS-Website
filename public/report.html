@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Incident | DisasterGuard Kerala</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .report-form-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        .report-form-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .photo-inputs input {
+            margin-bottom: 0.5rem;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .submit-btn:disabled {
+            background: #90caf9;
+            cursor: not-allowed;
+        }
+        .error-message, .success-message {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #d32f2f;
+        }
+        .success-message {
+            color: #388e3c;
+        }
+        @media (max-width: 600px) {
+            .report-form-container {
+                padding: 1rem;
+            }
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-form-container">
+        <h2>Report an Incident</h2>
+        <form id="incidentForm" enctype="multipart/form-data" novalidate>
+            <div class="error-message" id="errorMsg" style="display:none;"></div>
+            <div class="success-message" id="successMsg" style="display:none;"></div>
+            <div class="form-group">
+                <label for="incidentType">Incident Type <span style="color:red">*</span></label>
+                <select id="incidentType" name="incidentType" required>
+                    <option value="">Select...</option>
+                    <option value="Waterlogging">Waterlogging</option>
+                    <option value="Landslide">Landslide</option>
+                    <option value="Fallen Tree/Blocked Road">Fallen Tree/Blocked Road</option>
+                    <option value="Power Outage">Power Outage</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group" id="otherTypeGroup" style="display:none;">
+                <label for="otherType">Please specify</label>
+                <input type="text" id="otherType" name="otherType" maxlength="50">
+            </div>
+            <div class="form-group">
+                <label for="location">Location <span style="color:red">*</span></label>
+                <input type="text" id="location" name="location" required maxlength="100">
+            </div>
+            <div class="form-group">
+                <label for="description">Description <span style="color:red">*</span></label>
+                <textarea id="description" name="description" rows="3" required maxlength="500"></textarea>
+            </div>
+            <div class="form-group photo-inputs">
+                <label>Upload Photos (up to 3, max 2MB each, jpg/png):</label>
+                <input type="file" name="photos" accept="image/jpeg,image/png" multiple id="photos" />
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Your Name <span style="color:red">*</span></label>
+                    <input type="text" id="name" name="name" required maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number <span style="color:red">*</span></label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number">
+                </div>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Report</button>
+        </form>
+    </div>
+    <script>
+        const incidentType = document.getElementById('incidentType');
+        const otherTypeGroup = document.getElementById('otherTypeGroup');
+        incidentType.addEventListener('change', function() {
+            if (this.value === 'Other') {
+                otherTypeGroup.style.display = 'block';
+                document.getElementById('otherType').setAttribute('required', 'required');
+            } else {
+                otherTypeGroup.style.display = 'none';
+                document.getElementById('otherType').removeAttribute('required');
+            }
+        });
+
+        document.getElementById('incidentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            errorMsg.textContent = '';
+            successMsg.textContent = '';
+            const form = e.target;
+            const formData = new FormData(form);
+            // Validate photo uploads
+            const files = document.getElementById('photos').files;
+            if (files.length > 3) {
+                errorMsg.textContent = 'You can upload up to 3 photos only.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            for (let i = 0; i < files.length; i++) {
+                if (files[i].size > 2 * 1024 * 1024) {
+                    errorMsg.textContent = 'Each photo must be less than 2MB.';
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+                if (!['image/jpeg', 'image/png'].includes(files[i].type)) {
+                    errorMsg.textContent = 'Only JPG and PNG images are allowed.';
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+            }
+            // Validate phone
+            const phone = form.phone.value.trim();
+            if (!/^\d{10}$/.test(phone)) {
+                errorMsg.textContent = 'Please enter a valid 10-digit phone number.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            // Disable button
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            try {
+                const response = await fetch('/api/reports', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    successMsg.textContent = 'Report submitted successfully! Thank you for helping your community.';
+                    successMsg.style.display = 'block';
+                    form.reset();
+                    otherTypeGroup.style.display = 'none';
+                } else {
+                    errorMsg.textContent = result.error || 'Failed to submit report. Please try again.';
+                    errorMsg.style.display = 'block';
+                }
+            } catch (err) {
+                errorMsg.textContent = 'An error occurred. Please try again later.';
+                errorMsg.style.display = 'block';
+            }
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Report';
+        });
+    </script>
+</body>
+</html>

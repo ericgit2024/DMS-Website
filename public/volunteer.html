@@ -109,19 +109,25 @@
     }
   </style>
 </head>
-<body>
-  <!-- Header Section -->
-  <header>
+<header>
     <div class="container header-container">
       <a href="/" class="logo">Disaster<span>Guard</span></a>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/alerts">Alerts</a></li>
-          <li><a href="/info">Flood Info</a></li>
-          <li><a href="/volunteer" class="active">Volunteer</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">Disaster Info</a>
+            <div class="dropdown-content">
+              <a href="/info">Flood Info</a>
+              <a href="/landslide-info">Landslide Info</a>
+              <a href="/cyclone-info">Cyclone Info</a>
+            </div>
+          </li>
+          <li><a href="/volunteer">Volunteer</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/report-incident.html">Report an Incident</a></li>
         </ul>
       </nav>
     </div>
@@ -423,17 +429,35 @@
       // Initialize volunteer type selection
       const volunteerTypes = document.querySelectorAll('.volunteer-type');
       const volunteerTypeInput = document.getElementById('volunteer-type');
-      
+      const programSelect = document.getElementById('program');
+
+      // Sync volunteer type with program selection
+      programSelect.addEventListener('change', function() {
+        if (this.value) {
+          // Remove selected class from all types
+          volunteerTypes.forEach(t => t.classList.remove('selected'));
+          // Find and select the matching volunteer type
+          const match = Array.from(volunteerTypes).find(t => t.dataset.type === this.value);
+          if (match) {
+            match.classList.add('selected');
+            volunteerTypeInput.value = this.value;
+          }
+        } else {
+          volunteerTypeInput.value = '';
+          volunteerTypes.forEach(t => t.classList.remove('selected'));
+        }
+      });
+
       volunteerTypes.forEach(type => {
         type.addEventListener('click', function() {
           // Remove selected class from all types
           volunteerTypes.forEach(t => t.classList.remove('selected'));
-          
           // Add selected class to clicked type
           this.classList.add('selected');
-          
           // Set volunteer type in hidden input
           volunteerTypeInput.value = this.dataset.type;
+          // Sync program select
+          programSelect.value = this.dataset.type;
         });
       });
       

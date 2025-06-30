@@ -235,6 +235,7 @@
           <li><a href="#alerts" data-section="alerts">Alerts</a></li>
           <li><a href="#volunteers" data-section="volunteers">Volunteers</a></li>
           <li><a href="#messages" data-section="messages">Messages</a></li>
+          <li><a href="#crowdsourced-reports" data-section="crowdsourced-reports">Crowdsourced Reports</a></li>
         </ul>
       </div>
       
@@ -288,6 +289,8 @@
                     <option value="">Select Alert Type</option>
                     <option value="rain">Rain Alert</option>
                     <option value="flood">Flood Alert</option>
+                    <option value="landslide">Landslide Alert</option>
+                    <option value="cyclone">Cyclone Alert</option>
                   </select>
                 </div>
                 
@@ -418,6 +421,32 @@
           </div>
         </div>
         
+        <!-- Crowdsourced Reports Section -->
+        <div id="crowdsourced-reports-section" class="admin-section" style="display:none;">
+          <div class="content-header">
+            <h2>Crowdsourced Reports</h2>
+          </div>
+          <div id="reports-loading" class="text-center">Loading reports...</div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Location</th>
+                  <th>Description</th>
+                  <th>Photos</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="reports-table-body">
+                <!-- Reports will be loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
         <!-- Volunteer Details Modal -->
         <div id="volunteer-modal" class="modal">
           <div class="modal-content">
@@ -535,6 +564,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
+          credentials: 'include', // Ensure cookies/session are sent
           body: JSON.stringify(method === 'POST' ? postData : alertData)
         })
         .then(response => {
@@ -607,6 +637,9 @@
           } else if (section === 'messages') {
             document.getElementById('messages-section').style.display = 'block';
             fetchMessages();
+          } else if (section === 'crowdsourced-reports') {
+            document.getElementById('crowdsourced-reports-section').style.display = 'block';
+            fetchCrowdsourcedReports();
           }
         });
       });
@@ -1205,6 +1238,60 @@
         .catch(error => {
           console.error('Error fetching stats:', error);
         });
+    }
+    
+    // Fetch crowdsourced reports from server
+    function fetchCrowdsourcedReports() {
+      const loading = document.getElementById('reports-loading');
+      const tableBody = document.getElementById('reports-table-body');
+      loading.style.display = 'block';
+      tableBody.innerHTML = '';
+      fetch('/api/reports')
+        .then(res => res.json())
+        .then(reports => {
+          loading.style.display = 'none';
+          if (!Array.isArray(reports) || reports.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="7" class="text-center">No reports found.</td></tr>';
+            return;
+          }
+          tableBody.innerHTML = reports.map(report => `
+            <tr>
+              <td>${report.type}</td>
+              <td>${report.location}</td>
+              <td>${report.description}</td>
+              <td>${(report.photos||[]).map(p => `<a href="/${p}" target="_blank">Photo</a>`).join('<br>')}</td>
+              <td>${report.name}</td>
+              <td><span class="status-badge ${report.status === 'Pending' ? 'warning' : (report.status === 'Approved' ? 'success' : 'danger')}">${report.status}</span></td>
+              <td>
+                ${report.status === 'Pending' ? `
+                  <button class="btn btn-sm btn-primary approve-report-btn" data-id="${report.id}">Approve</button>
+                  <button class="btn btn-sm btn-danger reject-report-btn" data-id="${report.id}">Reject</button>
+                ` : ''}
+              </td>
+            </tr>
+          `).join('');
+          document.querySelectorAll('.approve-report-btn').forEach(btn => {
+            btn.onclick = function() { updateReportStatus(this.dataset.id, 'Approved'); };
+          });
+          document.querySelectorAll('.reject-report-btn').forEach(btn => {
+            btn.onclick = function() { updateReportStatus(this.dataset.id, 'Rejected'); };
+          });
+        })
+        .catch(err => {
+          loading.style.display = 'none';
+          tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Error loading reports.</td></tr>';
+        });
+    }
+    
+    function updateReportStatus(id, status) {
+      fetch(`/api/reports/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      })
+        .then(res => res.json())
+        .then(() => fetchCrowdsourcedReports())
+        .catch(() => alert('Failed to update report status.'));
     }
   </script>
 </body>

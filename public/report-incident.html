@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Incident | DisasterGuard Kerala</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .info-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 2rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .info-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .info-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        .info-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .info-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .photo-inputs input {
+            margin-bottom: 0.5rem;
+        }
+        .form-actions {
+            text-align: center;
+        }
+        button {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #aaa;
+        }
+        .error-message, .success-message {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #d32f2f;
+        }
+        .success-message {
+            color: #388e3c;
+        }
+        @media (max-width: 600px) {
+            .info-section { padding: 1rem; }
+            .info-header { padding: 2rem 0 1rem 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">Disaster<span>Guard</span></a>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/alerts">Alerts</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Disaster Info</a>
+                        <div class="dropdown-content">
+                            <a href="/info">Flood Info</a>
+                            <a href="/landslide-info">Landslide Info</a>
+                            <a href="/cyclone-info">Cyclone Info</a>
+                        </div>
+                    </li>
+                    <li><a href="/volunteer">Volunteer</a></li>
+                    <li><a href="/donate">Donate</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/report-incident.html">Report an Incident</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="info-header">
+        <div class="container">
+            <h1>Report an Incident</h1>
+            <p>Help Kerala DisasterGuard by reporting incidents such as waterlogging, landslides, fallen trees, power outages, and more. Your report will help authorities respond faster and keep the community safe.</p>
+        </div>
+    </div>
+    <div class="info-section">
+        <div id="form-messages"></div>
+        <form id="incidentForm" enctype="multipart/form-data" novalidate>
+            <div class="form-group">
+                <label for="incidentType">Incident Type<span style="color:red">*</span></label>
+                <select id="incidentType" name="incidentType" required>
+                    <option value="">Select...</option>
+                    <option value="Waterlogging">Waterlogging</option>
+                    <option value="Landslide">Landslide</option>
+                    <option value="Fallen Tree/Blocked Road">Fallen Tree/Blocked Road</option>
+                    <option value="Power Outage">Power Outage</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group" id="otherTypeGroup" style="display:none;">
+                <label for="otherType">Please specify</label>
+                <input type="text" id="otherType" name="otherType" maxlength="50">
+            </div>
+            <div class="form-group">
+                <label for="location">Location<span style="color:red">*</span></label>
+                <input type="text" id="location" name="location" required maxlength="100">
+            </div>
+            <div class="form-group">
+                <label for="description">Description<span style="color:red">*</span></label>
+                <textarea id="description" name="description" rows="3" required maxlength="500"></textarea>
+            </div>
+            <div class="form-group photo-inputs">
+                <label>Upload Photos (up to 3, max 2MB each, jpg/png):</label>
+                <input type="file" name="photos" accept="image/jpeg,image/png" multiple id="photos" />
+            </div>
+            <div class="form-group">
+                <label for="name">Your Name<span style="color:red">*</span></label>
+                <input type="text" id="name" name="name" required maxlength="50">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number<span style="color:red">*</span></label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number">
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="submitBtn">Submit Report</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-container" style="display: flex; justify-content: space-between; gap: 3rem; flex-wrap: wrap;">
+                <div class="footer-section">
+                    <h3>DisasterGuard</h3>
+                    <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Important Contacts</h3>
+                    <ul>
+                        <li>Emergency: 112</li>
+                        <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+                        <li>Kerala State Emergency Operations Centre: 1077</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+    const incidentType = document.getElementById('incidentType');
+    const otherTypeGroup = document.getElementById('otherTypeGroup');
+    const form = document.getElementById('incidentForm');
+    const formMessages = document.getElementById('form-messages');
+    const submitBtn = document.getElementById('submitBtn');
+    const photosInput = document.getElementById('photos');
+
+    incidentType.addEventListener('change', function() {
+        if (this.value === 'Other') {
+            otherTypeGroup.style.display = 'block';
+            document.getElementById('otherType').required = true;
+        } else {
+            otherTypeGroup.style.display = 'none';
+            document.getElementById('otherType').required = false;
+        }
+    });
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        formMessages.innerHTML = '';
+        submitBtn.disabled = true;
+
+        // Validate photo uploads
+        const files = photosInput.files;
+        if (files.length > 3) {
+            formMessages.innerHTML = '<div class="error-message">You can upload up to 3 photos only.</div>';
+            submitBtn.disabled = false;
+            return;
+        }
+        for (let i = 0; i < files.length; i++) {
+            if (files[i].size > 2 * 1024 * 1024) {
+                formMessages.innerHTML = '<div class="error-message">Each photo must be less than 2MB.</div>';
+                submitBtn.disabled = false;
+                return;
+            }
+            if (!['image/jpeg', 'image/png'].includes(files[i].type)) {
+                formMessages.innerHTML = '<div class="error-message">Only JPG and PNG images are allowed.</div>';
+                submitBtn.disabled = false;
+                return;
+            }
+        }
+
+        // Validate phone number
+        const phone = document.getElementById('phone').value.trim();
+        if (!/^\d{10}$/.test(phone)) {
+            formMessages.innerHTML = '<div class="error-message">Please enter a valid 10-digit phone number.</div>';
+            submitBtn.disabled = false;
+            return;
+        }
+
+        // Prepare form data
+        const formData = new FormData(form);
+        try {
+            const response = await fetch('/api/reports', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            if (response.ok) {
+                formMessages.innerHTML = '<div class="success-message">Thank you! Your report has been submitted and is pending review.</div>';
+                form.reset();
+                otherTypeGroup.style.display = 'none';
+            } else {
+                formMessages.innerHTML = `<div class="error-message">${result.error || 'Submission failed. Please try again.'}</div>`;
+            }
+        } catch (err) {
+            formMessages.innerHTML = '<div class="error-message">An error occurred. Please try again later.</div>';
+        }
+        submitBtn.disabled = false;
+    });
+    </script>
+</body>
+</html>

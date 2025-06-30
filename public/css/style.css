@@ -77,6 +77,35 @@ nav ul li a:hover {
   color: var(--warning-color);
 }
 
+/* Disaster Info Dropdown */
+nav ul li.dropdown {
+  position: relative;
+}
+nav ul li .dropdown-content {
+  display: none;
+  position: absolute;
+  background: #fff;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 100;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+nav ul li.dropdown:hover .dropdown-content {
+  display: block;
+}
+nav ul li .dropdown-content a {
+  color: var(--dark-color);
+  padding: 0.8rem 1.2rem;
+  display: block;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+nav ul li .dropdown-content a:hover {
+  background: #f0f7ff;
+  color: var(--primary-color);
+}
+
 /* Hero Section */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1547683905-f686c993aae5');

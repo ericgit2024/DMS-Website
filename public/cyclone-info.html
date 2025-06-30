@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyclone Information - DisasterGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .info-header { background-color: var(--primary-color); color: white; padding: 3rem 0; margin-bottom: 2rem; text-align: center; }
+    .info-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .info-header p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; }
+    .info-nav { background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 2rem; overflow: hidden; }
+    .info-nav ul { display: flex; list-style: none; border-bottom: 1px solid var(--border-color); }
+    .info-nav ul li { flex: 1; text-align: center; }
+    .info-nav ul li a { display: block; padding: 1rem; color: var(--dark-color); text-decoration: none; font-weight: 500; transition: background-color 0.3s; }
+    .info-nav ul li a:hover, .info-nav ul li a.active { background-color: var(--primary-color); color: white; }
+    .info-section { background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 2rem; margin-bottom: 2rem; }
+    .info-section h2 { color: var(--primary-color); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+    .info-section h3 { color: var(--dark-color); margin: 1.5rem 0 1rem; }
+    .info-section p { margin-bottom: 1rem; line-height: 1.7; }
+    .info-section ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    .info-section ul li { margin-bottom: 0.5rem; }
+    @media (max-width: 600px) { .info-section { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">Disaster<span>Guard</span></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">Disaster Info</a>
+            <div class="dropdown-content">
+              <a href="/info">Flood Info</a>
+              <a href="/landslide-info">Landslide Info</a>
+              <a href="/cyclone-info">Cyclone Info</a>
+            </div>
+          </li>
+          <li><a href="/volunteer">Volunteer</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/report-incident.html">Report an Incident</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="info-header">
+    <div class="container">
+      <h1>Cyclone Disaster Information</h1>
+      <p>Learn about cyclone safety measures and what to do before, during, and after a cyclone.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="info-nav">
+      <ul>
+        <li><a href="#before" class="active">Before a Cyclone</a></li>
+        <li><a href="#during">During a Cyclone</a></li>
+        <li><a href="#after">After a Cyclone</a></li>
+      </ul>
+    </div>
+    <div id="before" class="info-section">
+      <h2>Before a Cyclone</h2>
+      <ul>
+        <li>Monitor weather updates and cyclone warnings.</li>
+        <li>Secure loose objects and reinforce your home.</li>
+        <li>Prepare an emergency kit with essentials.</li>
+        <li>Know your nearest cyclone shelter and evacuation route.</li>
+      </ul>
+    </div>
+    <div id="during" class="info-section">
+      <h2>During a Cyclone</h2>
+      <ul>
+        <li>Stay indoors, away from windows and glass doors.</li>
+        <li>Listen to official instructions and alerts.</li>
+        <li>Do not venture outside until authorities declare it safe.</li>
+      </ul>
+    </div>
+    <div id="after" class="info-section">
+      <h2>After a Cyclone</h2>
+      <ul>
+        <li>Beware of fallen power lines and damaged structures.</li>
+        <li>Check for injuries and provide first aid if needed.</li>
+        <li>Report hazards to authorities.</li>
+      </ul>
+      <p>For more information, visit the <a href="https://sdma.kerala.gov.in/" target="_blank">Kerala State Disaster Management Authority</a>.</p>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-container" style="display: flex; justify-content: space-between; gap: 3rem; flex-wrap: wrap;">
+        <div class="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Kerala Disaster Management System for rain alerts and volunteer registration.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Important Contacts</h3>
+          <ul>
+            <li>Emergency: 112</li>
+            <li>Kerala State Disaster Management Authority: 0471-2364424</li>
+            <li>Kerala State Emergency Operations Centre: 1077</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 DisasterGuard - Kerala Disaster Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/js/main.js"></script>
+  <script>
+    document.querySelectorAll('.info-nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.info-nav a').forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        window.scrollTo({ top: targetSection.offsetTop - 100, behavior: 'smooth' });
+      });
+    });
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.info-section');
+      const navLinks = document.querySelectorAll('.info-nav a');
+      let currentSection = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+          currentSection = '#' + section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

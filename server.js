@@ -4,6 +4,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const axios = require('axios'); // Add at the top
+const multer = require('multer');
 
 // Import routes
 const alertsRoutes = require('./routes/alerts');
@@ -33,8 +34,9 @@ app.use(session({
 const dataDir = path.join(__dirname, 'data');
 const alertsDir = path.join(dataDir, 'alerts');
 const volunteersDir = path.join(dataDir, 'volunteers');
+const reportsDir = path.join(dataDir, 'reports_photos');
 
-[dataDir, alertsDir, volunteersDir].forEach(dir => {
+[dataDir, alertsDir, volunteersDir, reportsDir].forEach(dir => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
@@ -72,6 +74,45 @@ function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
 }
 
+// Multer setup for photo uploads (max 3 files, 2MB each)
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            const dir = path.join(__dirname, 'data', 'reports_photos');
+            fs.mkdirSync(dir, { recursive: true });
+            cb(null, dir);
+        },
+        filename: function (req, file, cb) {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+            cb(null, uniqueSuffix + '-' + file.originalname.replace(/[^a-zA-Z0-9.]/g, '_'));
+        }
+    }),
+    limits: { fileSize: 2 * 1024 * 1024, files: 3 },
+    fileFilter: function (req, file, cb) {
+        if (['image/jpeg', 'image/png'].includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only JPG and PNG images are allowed.'));
+        }
+    }
+});
+
+// Helper to read JSON file safely
+function readJsonFileSync(filePath, fallback = []) {
+    try {
+        if (!fs.existsSync(filePath)) return fallback;
+        const data = fs.readFileSync(filePath, 'utf8');
+        return JSON.parse(data);
+    } catch (err) {
+        return fallback;
+    }
+}
+
+// Helper to write JSON file safely
+function writeJsonFileSync(filePath, data) {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+}
+
 // API Routes
 app.use('/api/alerts', alertsRoutes);
 app.use('/api/volunteers', volunteersRoutes);
@@ -79,6 +120,108 @@ app.use('/auth', authRoutes); // <-- Fix: mount /auth for login/logout/check
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/stats', statsRoutes);
+
+// Incident report submission endpoint
+app.post('/api/reports', upload.array('photos', 3), (req, res) => {
+  try {
+    const { incidentType, otherType, location, description, name, phone } = req.body;
+    // Validation
+    if (!incidentType || !location || !description || !name || !phone) {
+      return res.status(400).json({ error: 'All required fields must be filled.' });
+    }
+    if (incidentType === 'Other' && (!otherType || !otherType.trim())) {
+      return res.status(400).json({ error: 'Please specify the incident type.' });
+    }
+    if (!/^\d{10}$/.test(phone)) {
+      return res.status(400).json({ error: 'Invalid phone number.' });
+    }
+    // Prepare report object
+    const report = {
+      id: generateId(),
+      type: incidentType === 'Other' ? otherType.trim() : incidentType, // Use 'type' for consistency
+      location: location.trim(),
+      description: description.trim(),
+      photos: req.files ? req.files.map(f => 'data/reports_photos/' + path.basename(f.path)) : [],
+      name: name.trim(),
+      phone: phone.trim(),
+      status: 'Pending',
+      timestamp: new Date().toISOString()
+    };
+    // Save to reports.json
+    const reportsFile = path.join(__dirname, 'data', 'reports.json');
+    let reports = readJsonFile(reportsFile, []);
+    reports.push(report);
+    writeJsonFile(reportsFile, reports);
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Error saving report:', err);
+    res.status(500).json({ error: 'Failed to submit report. Please try again.' });
+  }
+});
+
+// API: Get all incident reports (admin dashboard)
+app.get('/api/reports', (req, res) => {
+    try {
+        const reportsPath = path.join(__dirname, 'data', 'reports.json');
+        const reports = readJsonFileSync(reportsPath);
+        res.json(reports);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to load reports.' });
+    }
+});
+
+// API: Approve or reject a report
+app.patch('/api/reports/:id', (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        if (!['Approved', 'Rejected'].includes(status)) {
+            return res.status(400).json({ error: 'Invalid status.' });
+        }
+        const reportsPath = path.join(__dirname, 'data', 'reports.json');
+        const reports = readJsonFileSync(reportsPath);
+        const idx = reports.findIndex(r => r.id === id);
+        if (idx === -1) return res.status(404).json({ error: 'Report not found.' });
+        reports[idx].status = status;
+        writeJsonFileSync(reportsPath, reports);
+        res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to update report status.' });
+    }
+});
+
+// API: Get all volunteers (always from file)
+app.get('/api/volunteers', (req, res) => {
+    try {
+        const volunteersPath = path.join(__dirname, 'data', 'volunteers', 'volunteers.json');
+        const volunteers = readJsonFileSync(volunteersPath);
+        res.json(volunteers);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to load volunteers.' });
+    }
+});
+
+// API: Get all alerts (always from file)
+app.get('/api/alerts', (req, res) => {
+    try {
+        const alertsPath = path.join(__dirname, 'data', 'alerts', 'alerts.json');
+        const alerts = readJsonFileSync(alertsPath);
+        res.json(alerts);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to load alerts.' });
+    }
+});
+
+// API: Get all contact messages (always from file)
+app.get('/api/contact', (req, res) => {
+    try {
+        const messagesPath = path.join(__dirname, 'data', 'messages.json');
+        const messages = readJsonFileSync(messagesPath);
+        res.json(messages);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to load messages.' });
+    }
+});
 
 // Legacy routes for backward compatibility
 app.post('/api/login', (req, res) => {

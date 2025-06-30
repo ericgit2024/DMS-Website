@@ -23,10 +23,18 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/alerts">Alerts</a></li>
-          <li><a href="/info">Flood Info</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">Disaster Info</a>
+            <div class="dropdown-content">
+              <a href="/info">Flood Info</a>
+              <a href="/landslide-info">Landslide Info</a>
+              <a href="/cyclone-info">Cyclone Info</a>
+            </div>
+          </li>
           <li><a href="/volunteer">Volunteer</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/report-incident.html">Report an Incident</a></li>
         </ul>
       </nav>
     </div>
@@ -55,25 +63,25 @@
     </div>
   </section>
 
-  <!-- Information Section -->
+  <!-- Disaster Information Section -->
   <section class="info-section">
     <div class="container">
-      <h2 class="section-title">Flood Disaster Information</h2>
+      <h2 class="section-title">Disaster Information</h2>
       <div class="info-grid">
         <div class="info-card">
-          <h3>Before a Flood</h3>
-          <p>Learn about flood risks in your area and how to prepare your home and family for potential flooding.</p>
-          <a href="/info#before" class="btn btn-sm btn-primary">Learn More</a>
+          <h3>Floods</h3>
+          <p>Learn about flood risks, safety measures, and what to do before, during, and after a flood in Kerala.</p>
+          <a href="/info" class="btn btn-sm btn-primary">Flood Info</a>
         </div>
         <div class="info-card">
-          <h3>During a Flood</h3>
-          <p>Know what to do when flooding occurs, including evacuation procedures and emergency contacts.</p>
-          <a href="/info#during" class="btn btn-sm btn-primary">Learn More</a>
+          <h3>Landslides</h3>
+          <p>Understand landslide hazards, warning signs, and how to stay safe in hilly regions of Kerala.</p>
+          <a href="/landslide-info" class="btn btn-sm btn-primary">Landslide Info</a>
         </div>
         <div class="info-card">
-          <h3>After a Flood</h3>
-          <p>Understand the steps to take after a flood, including safety precautions and cleanup procedures.</p>
-          <a href="/info#after" class="btn btn-sm btn-primary">Learn More</a>
+          <h3>Cyclones</h3>
+          <p>Get cyclone preparedness tips, safety guidelines, and recovery steps for Kerala communities.</p>
+          <a href="/cyclone-info" class="btn btn-sm btn-primary">Cyclone Info</a>
         </div>
       </div>
     </div>

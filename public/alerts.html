@@ -40,6 +40,53 @@
       border-radius: 8px;
       margin-bottom: 2rem;
     }
+
+    #community-reports-section {
+      margin-top: 4rem;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    #community-reports-list {
+      margin-top: 1rem;
+    }
+
+    .report-card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+    }
+
+    .report-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .report-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .report-status {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .report-description {
+      margin: 0.5rem 0;
+    }
+
+    .report-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #999;
+    }
   </style>
 </head>
 <body>
@@ -50,11 +97,19 @@
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/alerts" class="active">Alerts</a></li>
-          <li><a href="/info">Flood Info</a></li>
+          <li><a href="/alerts">Alerts</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">Disaster Info</a>
+            <div class="dropdown-content">
+              <a href="/info">Flood Info</a>
+              <a href="/landslide-info">Landslide Info</a>
+              <a href="/cyclone-info">Cyclone Info</a>
+            </div>
+          </li>
           <li><a href="/volunteer">Volunteer</a></li>
           <li><a href="/donate">Donate</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/report-incident.html">Report an Incident</a></li>
         </ul>
       </nav>
     </div>
@@ -63,17 +118,20 @@
   <!-- Main Content -->
   <main class="container">
     <h1 class="page-title">Disaster Alerts</h1>
-    
     <div class="alerts-filter">
       <button class="filter-btn active" data-type="all">All Alerts</button>
       <button class="filter-btn" data-type="emergency">Emergency</button>
       <button class="filter-btn" data-type="warning">Warning</button>
       <button class="filter-btn" data-type="info">Information</button>
     </div>
-
     <div id="alerts-container">
       <!-- Alerts will be loaded here -->
     </div>
+    <section id="community-reports-section">
+      <h2>Community Reports</h2>
+      <div id="community-reports-loading" class="text-center">Loading community reports...</div>
+      <div id="community-reports-list"></div>
+    </section>
   </main>
 
   <!-- Footer Section -->
@@ -104,6 +162,9 @@
     let allAlerts = [];
     const alertsContainer = document.getElementById('alerts-container');
     const filterButtons = document.querySelectorAll('.filter-btn');
+    const communityReportsSection = document.getElementById('community-reports-section');
+    const communityReportsLoading = document.getElementById('community-reports-loading');
+    const communityReportsList = document.getElementById('community-reports-list');
 
     // Function to load all alerts
     async function loadAlerts() {
@@ -132,15 +193,54 @@
         <div class="alert-card ${alert.type.toLowerCase()}">
           <div class="alert-header">
             <h3>${alert.title}</h3>
-            <span class="alert-type">${alert.type}</span>
+            <span class="alert-type">${alert.type.replace(/^(.)/, c => c.toUpperCase())}</span>
           </div>
           <p>${alert.description}</p>
           <div class="alert-footer">
-            <span class="alert-time">Posted: ${new Date(alert.timestamp).toLocaleString()}</span>
+            <span class="alert-time">Posted: ${new Date(alert.timestamp || alert.date).toLocaleString()}</span>
           </div>
         </div>
       `).join('');
     }
+
+    // Load alerts when the page loads
+    loadAlerts();
+
+    // Community Reports logic
+    async function loadCommunityReports() {
+      const loading = document.getElementById('community-reports-loading');
+      const list = document.getElementById('community-reports-list');
+      loading.style.display = 'block';
+      list.innerHTML = '';
+      try {
+        const response = await fetch('/api/reports');
+        const reports = await response.json();
+        loading.style.display = 'none';
+        const approved = (reports || []).filter(r => r.status === 'Approved');
+        if (approved.length === 0) {
+          list.innerHTML = '<p class="no-alerts">No community reports available.</p>';
+          return;
+        }
+        list.innerHTML = approved.map(report => `
+          <div class="alert-card community-report">
+            <div class="alert-header">
+              <h3>${report.type}</h3>
+              <span class="alert-type">Community Report</span>
+            </div>
+            <p><strong>Location:</strong> ${report.location}</p>
+            <p>${report.description}</p>
+            ${(report.photos||[]).length > 0 ? `<div class='report-photos'>${report.photos.map(p => `<a href='/${p}' target='_blank'><img src='/${p}' alt='photo' style='max-width:80px;max-height:80px;margin:2px;border-radius:4px;'></a>`).join('')}</div>` : ''}
+            <div class="alert-footer">
+              <span class="alert-reporter">Reported by: ${report.name}</span>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        loading.style.display = 'none';
+        list.innerHTML = '<p class="no-alerts">Failed to load community reports.</p>';
+      }
+    }
+    loadCommunityReports();
 
     // Add click event listeners to filter buttons
     filterButtons.forEach(button => {
@@ -150,9 +250,6 @@
         displayAlerts(button.dataset.type);
       });
     });
-
-    // Load alerts when the page loads
-    loadAlerts();
   </script>
 </body>
 </html>

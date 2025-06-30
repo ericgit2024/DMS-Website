@@ -70,12 +70,19 @@ router.get('/', isAuthenticated, (req, res) => {
   });
   
   res.json({
-    rainAlerts,
-    floodAlerts,
-    volunteers: volunteers.length,
-    messages: unreadMessages,
-    volunteersByDistrict,
-    volunteersByType,
+    alertStats: {
+      rainAlerts,
+      floodAlerts
+    },
+    volunteerStats: {
+      total: volunteers.length,
+      byDistrict: volunteersByDistrict,
+      byType: volunteersByType
+    },
+    messageStats: {
+      total: messages.length,
+      unread: unreadMessages
+    },
     alertsByLocation
   });
 });
