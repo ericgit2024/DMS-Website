@@ -45,11 +45,23 @@ function isAuthenticated(req, res, next) {
 
 // Get all volunteers (admin only)
 router.get('/', isAuthenticated, (req, res) => {
-  const volunteersFile = path.join(__dirname, '..', 'data', 'volunteers', 'volunteers.json');
-  const volunteers = readJsonFile(volunteersFile);
-  // Only filter out rejected
-  const visibleVolunteers = volunteers.filter(v => v.status !== 'rejected');
-  res.json(visibleVolunteers);
+  try {
+    const volunteersFile = path.join(__dirname, '..', 'data', 'volunteers', 'volunteers.json');
+    console.log('Reading volunteers from:', volunteersFile);
+    const volunteers = readJsonFile(volunteersFile, []);
+    
+    if (!Array.isArray(volunteers)) {
+      console.error('Invalid volunteers data format');
+      return res.status(500).json({ error: 'Invalid data format' });
+    }
+    
+    // Only filter out rejected volunteers
+    const visibleVolunteers = volunteers.filter(v => !v.status || v.status !== 'rejected');
+    res.json(visibleVolunteers);
+  } catch (error) {
+    console.error('Error fetching volunteers:', error);
+    res.status(500).json({ error: 'Failed to fetch volunteers' });
+  }
 });
 
 // Register a new volunteer
