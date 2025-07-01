@@ -1,31 +1,42 @@
 [
   {
-    "id": "mcj2xosm63i97",
-    "title": "Orange Alert",
-    "type": "rain",
-    "description": "Expect rain",
-    "location": "Palakkad",
-    "date": "2025-06-30",
-    "timestamp": "2025-06-30T12:33:06.502Z",
+    "id": "mckhub0zfxkba",
+    "title": "Cyclone 'Vayu' Expected to Hit Kerala Coast",
+    "type": "cyclone",
+    "description": "The IMD has issued a Cyclone Red Alert as Cyclone 'Vayu' is expected to make landfall near Thiruvananthapuram with wind speeds of 90-110 km/h. Fishermen are strictly advised not to venture into the sea. Coastal evacuations are being planned.",
+    "location": "Thiruvananthapuram, Kerala",
+    "date": "2025-07-04",
+    "timestamp": "2025-07-01T12:18:09.107Z",
     "createdBy": "admin"
   },
   {
-    "id": "mcgcob2cv6zt9",
-    "type": "rain",
-    "title": "Heavy Rainfall Warning for Idukki District",
-    "description": "The Meteorological Department has issued a heavy rainfall warning for Idukki district. Residents are advised to stay indoors and avoid unnecessary travel.",
-    "location": "Idukki",
-    "date": "2023-07-15",
-    "timestamp": "2025-06-28T14:42:26.436Z"
+    "id": "mckhsycdj2h36",
+    "title": "Severe Flooding Reported in Kuttanad Region",
+    "type": "flood",
+    "description": "The Kuttanad region in Alappuzha is experiencing severe flooding due to rising water levels in the Pamba and Manimala rivers. Evacuation of low-lying areas is advised. Relief camps are being set up. More information would be passed through SMS.",
+    "location": "Kuttanad, Alappuzha, Kerala",
+    "date": "2025-07-02",
+    "timestamp": "2025-07-01T12:17:06.013Z",
+    "createdBy": "admin"
   },
   {
-    "id": "mcgcob2d4x881",
-    "type": "flood",
-    "title": "Flood Alert for Wayanad District",
-    "description": "Due to continuous heavy rainfall, flood alert has been issued for low-lying areas of Wayanad district. Residents are advised to move to higher ground or designated relief camps.",
-    "location": "Wayanad",
-    "date": "2023-07-14",
-    "severity": "severe",
-    "timestamp": "2025-06-28T14:42:26.437Z"
+    "id": "mckhr1cugk3l5",
+    "title": "Moderate Rainfall Predicted for Kozhikode",
+    "type": "rain",
+    "description": "IMD predicts moderate rainfall of 64.5 mm to 115.5 mm in Kozhikode district. Residents are advised to remain cautious, especially in hilly regions prone to landslides.",
+    "location": "Kozhikode, Kerala",
+    "date": "2025-07-03",
+    "timestamp": "2025-07-01T12:15:36.606Z",
+    "createdBy": "admin"
+  },
+  {
+    "id": "mckhorud9262t",
+    "title": "Heavy Rainfall Expected in Ernakulam",
+    "type": "rain",
+    "description": "IMD has issued a Red Alert for Ernakulam district due to the possibility of extremely heavy rainfall exceeding 204.4 mm. Residents are advised to stay indoors and avoid unnecessary travel.",
+    "location": "Ernakulam, Kerala",
+    "date": "2025-07-02",
+    "timestamp": "2025-07-01T12:13:50.965Z",
+    "createdBy": "admin"
   }
 ]

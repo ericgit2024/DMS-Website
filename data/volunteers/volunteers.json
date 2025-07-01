@@ -53,7 +53,8 @@
     "volunteerType": "rescue",
     "program": "rescue",
     "timestamp": "2025-06-30T12:30:17.646Z",
-    "status": "pending"
+    "status": "rejected",
+    "updatedAt": "2025-07-01T12:18:44.702Z"
   },
   {
     "id": "mcjd6ghdjqb9g",
@@ -81,6 +82,94 @@
     "volunteerType": "shelter",
     "program": "shelter",
     "timestamp": "2025-06-30T17:19:51.793Z",
-    "status": "pending"
+    "status": "rejected",
+    "updatedAt": "2025-07-01T12:18:50.243Z"
+  },
+  {
+    "id": "mckodq80k3wf8",
+    "name": "Arun Raj",
+    "email": "arunraj.k@gmail.com",
+    "phone": "9847056789",
+    "address": "TC 12/456, Vazhuthacaud",
+    "city": "Thiruvananthapuram",
+    "district": "Thiruvananthapuram",
+    "pincode": "695014",
+    "age": "28",
+    "gender": "male",
+    "availability": "weekends",
+    "duration": "long-term",
+    "skills": "First Aid, Swimming",
+    "experience": "Participated in flood rescue operations in 2018",
+    "languages": "Malayalam, English",
+    "emergencyContact": {
+      "name": "Ramesh Raj",
+      "phone": "9847012345",
+      "relation": "Father"
+    },
+    "medicalConditions": "None",
+    "comments": "Ready for training anytime",
+    "volunteerType": "rescue",
+    "program": "rescue",
+    "timestamp": "2025-07-01T15:21:12.960Z",
+    "status": "approved",
+    "updatedAt": "2025-07-01T15:28:12.304Z"
+  },
+  {
+    "id": "mckogsfxgxtjx",
+    "name": "Anjali Nair",
+    "email": "anjali.nair@gmail.com",
+    "phone": "9633087654",
+    "address": "House No. 23, Gandhi Nagar",
+    "city": "Kochi",
+    "district": "Ernakulam",
+    "pincode": "682020",
+    "age": "32",
+    "gender": "female",
+    "availability": "full-time",
+    "duration": "1-month",
+    "skills": "Cooking, Event Coordination",
+    "experience": "Volunteered in COVID-19 relief camps",
+    "languages": "Malayalam, English, Hindi",
+    "emergencyContact": {
+      "name": "Lakshmi Nair",
+      "phone": "9744567890",
+      "relation": "Sister"
+    },
+    "medicalConditions": "None",
+    "comments": "Can assist in women's relief camps",
+    "volunteerType": "shelter",
+    "program": "shelter",
+    "timestamp": "2025-07-01T15:23:35.805Z",
+    "status": "approved",
+    "updatedAt": "2025-07-01T15:28:15.695Z"
+  },
+  {
+    "id": "mckojzbssb48x",
+    "name": "Joseph Mathew",
+    "email": "joseph.m@gmail.com",
+    "phone": "9072054321",
+    "address": "Puthenparambil House, Kottayam Town",
+    "city": "Kottayam",
+    "district": "Kottayam",
+    "pincode": "686001",
+    "age": "35",
+    "gender": "male",
+    "availability": "weekdays",
+    "duration": "1-month",
+    "skills": "Driving (LMV), Logistics Coordination",
+    "experience": "Worked in flood relief material distribution in 2018",
+    "languages": "Malayalam, English, Tamil",
+    "emergencyContact": {
+      "name": "Mary Mathew",
+      "phone": "9895123456",
+      "relation": "Wife"
+    },
+    "medicalConditions": "Mild asthma (well-controlled)",
+    "comments": "Can help with transport logistics",
+    "volunteerType": "relief",
+    "program": "relief",
+    "timestamp": "2025-07-01T15:26:04.696Z",
+    "status": "approved",
+    "updatedAt": "2025-07-01T15:28:18.879Z"
   }
 ]

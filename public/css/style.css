@@ -108,12 +108,16 @@ nav ul li .dropdown-content a:hover {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1547683905-f686c993aae5');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url('https://images.unsplash.com/photo-1558448495-5ef3fce92344?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: center;
   color: white;
   text-align: center;
-  padding: 5rem 0;
+  height: 700px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero h1 {
@@ -154,6 +158,8 @@ nav ul li .dropdown-content a:hover {
 .btn-secondary {
   background-color: var(--secondary-color);
   color: white;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 .btn-secondary:hover {

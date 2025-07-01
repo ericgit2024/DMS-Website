@@ -1,15 +1,28 @@
 [
   {
-    "id": "mck2gunxz55b3",
-    "type": "Big incident",
-    "location": "Palakkad",
-    "description": "Help us clear the road",
+    "id": "mcknnf1fshg5x",
+    "type": "Waterlogging",
+    "location": "Near KSRTC Bus Stand, Ernakulam",
+    "description": "Severe waterlogging on the main road near the KSRTC bus stand, making it difficult for vehicles and pedestrians to pass. The area is prone to traffic blocks and accidents.",
     "photos": [
-      "data/reports_photos/1751346467119-713148002-Eric_Sign_Wide.jpg"
+      "data/reports_photos/1751382045404-603723688-1723460011_waterlogging.jpg"
     ],
-    "name": "Unni",
-    "phone": "8523697410",
+    "name": "Rahul Menon",
+    "phone": "9847012345",
     "status": "Approved",
-    "timestamp": "2025-07-01T05:07:47.133Z"
+    "timestamp": "2025-07-01T15:00:45.411Z"
+  },
+  {
+    "id": "mcknroeobni35",
+    "type": "Fallen Tree/Blocked Road",
+    "location": "MG Road, Kochi",
+    "description": "A large tree has fallen across MG Road due to strong winds, blocking traffic and causing power lines to hang dangerously. Immediate clearance is required.",
+    "photos": [
+      "data/reports_photos/1751382244160-344043139-750x450_866348_tree_1.jpg"
+    ],
+    "name": "Anjali Ramesh",
+    "phone": "9633778899",
+    "status": "Approved",
+    "timestamp": "2025-07-01T15:04:04.176Z"
   }
 ]

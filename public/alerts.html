@@ -118,12 +118,6 @@
   <!-- Main Content -->
   <main class="container">
     <h1 class="page-title">Disaster Alerts</h1>
-    <div class="alerts-filter">
-      <button class="filter-btn active" data-type="all">All Alerts</button>
-      <button class="filter-btn" data-type="emergency">Emergency</button>
-      <button class="filter-btn" data-type="warning">Warning</button>
-      <button class="filter-btn" data-type="info">Information</button>
-    </div>
     <div id="alerts-container">
       <!-- Alerts will be loaded here -->
     </div>
@@ -229,7 +223,7 @@
             </div>
             <p><strong>Location:</strong> ${report.location}</p>
             <p>${report.description}</p>
-            ${(report.photos||[]).length > 0 ? `<div class='report-photos'>${report.photos.map(p => `<a href='/${p}' target='_blank'><img src='/${p}' alt='photo' style='max-width:80px;max-height:80px;margin:2px;border-radius:4px;'></a>`).join('')}</div>` : ''}
+            ${(report.photos||[]).length > 0 ? `<div class='report-photos'>${report.photos.map(p => `<a href='${p}' target='_blank'><img src='${p}' alt='photo' style='max-width:80px;max-height:80px;margin:2px;border-radius:4px;'></a>`).join('')}</div>` : ''}
             <div class="alert-footer">
               <span class="alert-reporter">Reported by: ${report.name}</span>
             </div>
@@ -241,15 +235,6 @@
       }
     }
     loadCommunityReports();
-
-    // Add click event listeners to filter buttons
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        displayAlerts(button.dataset.type);
-      });
-    });
   </script>
 </body>
 </html>
