@@ -232,7 +232,6 @@
       <div class="admin-sidebar">
         <ul>
           <li><a href="#dashboard" data-section="dashboard">Dashboard</a></li>
-          <li><a href="#alerts" data-section="alerts">Alerts</a></li>
           <li><a href="#volunteers" data-section="volunteers">Volunteers</a></li>
           <li><a href="#messages" data-section="messages">Messages</a></li>
           <li><a href="#crowdsourced-reports" data-section="crowdsourced-reports">Crowdsourced Reports</a></li>
@@ -725,23 +724,35 @@
       }
       // Update stats dynamically
       function fetchStats() {
-        fetch('/api/alerts', { credentials: 'include' })
-          .then(res => res.json())
-          .then(alerts => {
-            document.getElementById('total-alerts').textContent = alerts.length;
-            document.getElementById('rain-alerts').textContent = alerts.filter(a => a.type === 'rain').length;
-            document.getElementById('flood-alerts').textContent = alerts.filter(a => a.type === 'flood').length;
+        Promise.all([
+          fetch('/api/alerts', { credentials: 'include' }).then(res => res.json()),
+          fetch('/api/volunteers', { credentials: 'include' }).then(res => res.json()),
+          fetch('/api/contact', { credentials: 'include' }).then(res => res.json())
+        ])
+        .then(([alerts, volunteers, messages]) => {
+          // Count alerts by type
+          const rainAlerts = Array.isArray(alerts) ? alerts.filter(a => a.type === 'rain').length : 0;
+          const floodAlerts = Array.isArray(alerts) ? alerts.filter(a => a.type === 'flood').length : 0;
+          
+          // Count active volunteers (not rejected)
+          const activeVolunteers = Array.isArray(volunteers) ? volunteers.filter(v => v.status !== 'rejected').length : 0;
+          
+          // Count unread messages
+          const unreadMessages = Array.isArray(messages) ? messages.filter(m => !m.read).length : 0;
+          
+          // Update the dashboard
+          document.getElementById('rain-alerts-count').textContent = rainAlerts;
+          document.getElementById('flood-alerts-count').textContent = floodAlerts;
+          document.getElementById('volunteers-count').textContent = activeVolunteers;
+          document.getElementById('messages-count').textContent = unreadMessages;
+        })
+        .catch(error => {
+          console.error('Error fetching stats:', error);
+          // Show error state in the stats
+          ['rain-alerts-count', 'flood-alerts-count', 'volunteers-count', 'messages-count'].forEach(id => {
+            document.getElementById(id).textContent = '-';
           });
-        fetch('/api/volunteers', { credentials: 'include' })
-          .then(res => res.json())
-          .then(vols => {
-            document.getElementById('total-volunteers').textContent = vols.length;
-          });
-        fetch('/api/contact', { credentials: 'include' })
-          .then(res => res.json())
-          .then(msgs => {
-            document.getElementById('total-messages').textContent = msgs.length;
-          });
+        });
       }
       // Call fetchStats after data changes
       fetchStats();
@@ -749,55 +760,80 @@
     
     // Fetch volunteers from server
     function fetchVolunteers() {
+      const tableBody = document.getElementById('volunteers-table-body');
+      tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Loading volunteers...</td></tr>';
+      
       fetch('/api/volunteers', { credentials: 'include' })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch volunteers');
+          }
+          return response.json();
+        })
         .then(volunteers => {
-          const tableBody = document.getElementById('volunteers-table-body');
-          // Only show volunteers with status pending or approved
-          const visibleVolunteers = volunteers.filter(v => v.status !== 'rejected');
-          if (visibleVolunteers.length === 0) {
+          if (!Array.isArray(volunteers) || volunteers.length === 0) {
             tableBody.innerHTML = '<tr><td colspan="7" class="text-center">No volunteers found.</td></tr>';
             return;
           }
+
+          // Only show volunteers with status pending or approved
+          const visibleVolunteers = volunteers.filter(v => v.status !== 'rejected');
+          if (visibleVolunteers.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="7" class="text-center">No active volunteers found.</td></tr>';
+            return;
+          }
+
           let tableHTML = '';
           visibleVolunteers.forEach(volunteer => {
             tableHTML += `
               <tr>
-                <td>${volunteer.name}</td>
-                <td>${volunteer.email}</td>
-                <td>${volunteer.phone}</td>
-                <td>${volunteer.district}</td>
+                <td>${volunteer.name || ''}</td>
+                <td>${volunteer.email || ''}</td>
+                <td>${volunteer.phone || ''}</td>
+                <td>${volunteer.district || ''}</td>
                 <td>${volunteer.program || ''}</td>
-                <td><span class="status-badge ${getStatusClass(volunteer.status)}">${volunteer.status}</span></td>
+                <td><span class="status-badge ${getStatusClass(volunteer.status)}">${volunteer.status || 'pending'}</span></td>
                 <td>
                   <div class="action-buttons">
                     <button class="btn btn-sm btn-primary view-volunteer-btn" data-id="${volunteer.id}">View</button>
-                    <button class="btn btn-sm btn-danger delete-volunteer-btn" data-id="${volunteer.id}">Delete</button>
+                    ${volunteer.status === 'pending' ? `
+                      <button class="btn btn-sm btn-success approve-volunteer-btn" data-id="${volunteer.id}">Approve</button>
+                      <button class="btn btn-sm btn-danger reject-volunteer-btn" data-id="${volunteer.id}">Reject</button>
+                    ` : ''}
                   </div>
                 </td>
               </tr>
             `;
           });
+          
           tableBody.innerHTML = tableHTML;
-          // Add event listeners to view and delete buttons
-          document.querySelectorAll('.view-volunteer-btn').forEach(button => {
-            button.addEventListener('click', function() {
-              const volunteerId = this.dataset.id;
-              viewVolunteerDetails(volunteerId);
+
+          // Add event listeners
+          document.querySelectorAll('.view-volunteer-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              viewVolunteerDetails(this.dataset.id);
             });
           });
-          document.querySelectorAll('.delete-volunteer-btn').forEach(button => {
-            button.addEventListener('click', function() {
-              const volunteerId = this.dataset.id;
-              if (confirm('Are you sure you want to delete this volunteer?')) {
-                deleteVolunteer(volunteerId);
+          
+          document.querySelectorAll('.approve-volunteer-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              if (confirm('Are you sure you want to approve this volunteer?')) {
+                updateVolunteerStatus(this.dataset.id, 'approved');
+              }
+            });
+          });
+          
+          document.querySelectorAll('.reject-volunteer-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              if (confirm('Are you sure you want to reject this volunteer?')) {
+                updateVolunteerStatus(this.dataset.id, 'rejected');
               }
             });
           });
         })
         .catch(error => {
           console.error('Error fetching volunteers:', error);
-          document.getElementById('volunteers-table-body').innerHTML = '<tr><td colspan="7" class="text-center">Error loading volunteers.</td></tr>';
+          tableBody.innerHTML = '<tr><td colspan="7" class="text-center text-danger">Failed to load volunteers. Please try again.</td></tr>';
         });
     }
     
@@ -943,13 +979,18 @@
     
     // Fetch messages from server
      function fetchMessages() {
-       fetch('/api/contact')
-         .then(response => response.json())
+       fetch('/api/contact', { credentials: 'include' })
+         .then(response => {
+           if (!response.ok) {
+             throw new Error('Failed to fetch messages');
+           }
+           return response.json();
+         })
          .then(messages => {
            const tableBody = document.getElementById('messages-table-body');
            document.getElementById('messages-count-label').textContent = `Total: ${messages.length}`;
            
-           if (messages.length === 0) {
+           if (!Array.isArray(messages) || messages.length === 0) {
              tableBody.innerHTML = '<tr><td colspan="6" class="text-center">No messages found.</td></tr>';
              return;
            }
@@ -958,11 +999,11 @@
            messages.forEach(message => {
              tableHTML += `
                <tr>
-                 <td>${message.name}</td>
-                 <td>${message.email}</td>
-                 <td>${message.subject}</td>
-                 <td>${new Date(message.timestamp).toLocaleDateString()}</td>
-                 <td><span class="status-badge ${message.read ? 'read' : 'unread'}">${message.read ? 'Read' : 'Unread'}</span></td>
+                 <td>${message.name || ''}</td>
+                 <td>${message.email || ''}</td>
+                 <td>${message.subject || ''}</td>
+                 <td>${message.timestamp ? new Date(message.timestamp).toLocaleDateString() : ''}</td>
+                 <td><span class="status-badge ${message.read ? 'success' : 'warning'}">${message.read ? 'Read' : 'Unread'}</span></td>
                  <td>
                    <div class="action-buttons">
                      <button class="btn btn-sm btn-primary view-message-btn" data-id="${message.id}">View</button>
@@ -975,11 +1016,10 @@
            
            tableBody.innerHTML = tableHTML;
            
-           // Add event listeners to view and delete buttons
+           // Add event listeners to buttons
            document.querySelectorAll('.view-message-btn').forEach(button => {
              button.addEventListener('click', function() {
-               const messageId = this.dataset.id;
-               viewMessageDetails(messageId);
+               viewMessageDetails(this.dataset.id);
              });
            });
            
@@ -994,7 +1034,8 @@
          })
          .catch(error => {
            console.error('Error fetching messages:', error);
-           document.getElementById('messages-table-body').innerHTML = '<tr><td colspan="6" class="text-center">Error loading messages.</td></tr>';
+           document.getElementById('messages-table-body').innerHTML = 
+             '<tr><td colspan="6" class="text-center text-danger">Failed to load messages. Please try again.</td></tr>';
          });
      }
     
